@@ -1,0 +1,135 @@
+Traceback (most recent call last):
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/bdcdo/Desktop/curso-polars/.venv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import polars as pl
+df = pl.read_csv('base_fapesp.csv')
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpolars[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpl[39;00m
+[32m----> [39m[32m2[39m df = [43mpl[49m[43m.[49m[43mread_csv[49m[43m([49m[33;43m'[39;49m[33;43mbase_fapesp.csv[39;49m[33;43m'[39;49m[43m)[49m
+
+[36mFile [39m[32m~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119[39m, in [36mdeprecate_renamed_parameter.<locals>.decorate.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
+[32m    114[39m [38;5;129m@wraps[39m(function)
+[32m    115[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrapper[39m(*args: P.args, **kwargs: P.kwargs) -> T:
+[32m    116[39m     _rename_keyword_argument(
+[32m    117[39m         old_name, new_name, kwargs, function.[34m__qualname__[39m, version
+[32m    118[39m     )
+[32m--> [39m[32m119[39m     [38;5;28;01mreturn[39;00m [43mfunction[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119[39m, in [36mdeprecate_renamed_parameter.<locals>.decorate.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
+[32m    114[39m [38;5;129m@wraps[39m(function)
+[32m    115[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrapper[39m(*args: P.args, **kwargs: P.kwargs) -> T:
+[32m    116[39m     _rename_keyword_argument(
+[32m    117[39m         old_name, new_name, kwargs, function.[34m__qualname__[39m, version
+[32m    118[39m     )
+[32m--> [39m[32m119[39m     [38;5;28;01mreturn[39;00m [43mfunction[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119[39m, in [36mdeprecate_renamed_parameter.<locals>.decorate.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
+[32m    114[39m [38;5;129m@wraps[39m(function)
+[32m    115[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrapper[39m(*args: P.args, **kwargs: P.kwargs) -> T:
+[32m    116[39m     _rename_keyword_argument(
+[32m    117[39m         old_name, new_name, kwargs, function.[34m__qualname__[39m, version
+[32m    118[39m     )
+[32m--> [39m[32m119[39m     [38;5;28;01mreturn[39;00m [43mfunction[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:540[39m, in [36mread_csv[39m[34m(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)[39m
+[32m    532[39m [38;5;28;01melse[39;00m:
+[32m    533[39m     [38;5;28;01mwith[39;00m prepare_file_arg(
+[32m    534[39m         source,
+[32m    535[39m         encoding=encoding,
+[32m   (...)[39m[32m    538[39m         storage_options=storage_options,
+[32m    539[39m     ) [38;5;28;01mas[39;00m data:
+[32m--> [39m[32m540[39m         df = [43m_read_csv_impl[49m[43m([49m
+[32m    541[39m [43m            [49m[43mdata[49m[43m,[49m
+[32m    542[39m [43m            [49m[43mhas_header[49m[43m=[49m[43mhas_header[49m[43m,[49m
+[32m    543[39m [43m            [49m[43mcolumns[49m[43m=[49m[43mcolumns[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mcolumns[49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43mprojection[49m[43m,[49m
+[32m    544[39m [43m            [49m[43mseparator[49m[43m=[49m[43mseparator[49m[43m,[49m
+[32m    545[39m [43m            [49m[43mcomment_prefix[49m[43m=[49m[43mcomment_prefix[49m[43m,[49m
+[32m    546[39m [43m            [49m[43mquote_char[49m[43m=[49m[43mquote_char[49m[43m,[49m
+[32m    547[39m [43m            [49m[43mskip_rows[49m[43m=[49m[43mskip_rows[49m[43m,[49m
+[32m    548[39m [43m            [49m[43mskip_lines[49m[43m=[49m[43mskip_lines[49m[43m,[49m
+[32m    549[39m [43m            [49m[43mschema_overrides[49m[43m=[49m[43mschema_overrides[49m[43m,[49m
+[32m    550[39m [43m            [49m[43mschema[49m[43m=[49m[43mschema[49m[43m,[49m
+[32m    551[39m [43m            [49m[43mnull_values[49m[43m=[49m[43mnull_values[49m[43m,[49m
+[32m    552[39m [43m            [49m[43mmissing_utf8_is_empty_string[49m[43m=[49m[43mmissing_utf8_is_empty_string[49m[43m,[49m
+[32m    553[39m [43m            [49m[43mignore_errors[49m[43m=[49m[43mignore_errors[49m[43m,[49m
+[32m    554[39m [43m            [49m[43mtry_parse_dates[49m[43m=[49m[43mtry_parse_dates[49m[43m,[49m
+[32m    555[39m [43m            [49m[43mn_threads[49m[43m=[49m[43mn_threads[49m[43m,[49m
+[32m    556[39m [43m            [49m[43minfer_schema_length[49m[43m=[49m[43minfer_schema_length[49m[43m,[49m
+[32m    557[39m [43m            [49m[43mbatch_size[49m[43m=[49m[43mbatch_size[49m[43m,[49m
+[32m    558[39m [43m            [49m[43mn_rows[49m[43m=[49m[43mn_rows[49m[43m,[49m
+[32m    559[39m [43m            [49m[43mencoding[49m[43m=[49m[43mencoding[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mencoding[49m[43m [49m[43m==[49m[43m [49m[33;43m"[39;49m[33;43mutf8-lossy[39;49m[33;43m"[39;49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[33;43m"[39;49m[33;43mutf8[39;49m[33;43m"[39;49m[43m,[49m
+[32m    560[39m [43m            [49m[43mlow_memory[49m[43m=[49m[43mlow_memory[49m[43m,[49m
+[32m    561[39m [43m            [49m[43mrechunk[49m[43m=[49m[43mrechunk[49m[43m,[49m
+[32m    562[39m [43m            [49m[43mskip_rows_after_header[49m[43m=[49m[43mskip_rows_after_header[49m[43m,[49m
+[32m    563[39m [43m            [49m[43mrow_index_name[49m[43m=[49m[43mrow_index_name[49m[43m,[49m
+[32m    564[39m [43m            [49m[43mrow_index_offset[49m[43m=[49m[43mrow_index_offset[49m[43m,[49m
+[32m    565[39m [43m            [49m[43meol_char[49m[43m=[49m[43meol_char[49m[43m,[49m
+[32m    566[39m [43m            [49m[43mraise_if_empty[49m[43m=[49m[43mraise_if_empty[49m[43m,[49m
+[32m    567[39m [43m            [49m[43mtruncate_ragged_lines[49m[43m=[49m[43mtruncate_ragged_lines[49m[43m,[49m
+[32m    568[39m [43m            [49m[43mdecimal_comma[49m[43m=[49m[43mdecimal_comma[49m[43m,[49m
+[32m    569[39m [43m            [49m[43mglob[49m[43m=[49m[43mglob[49m[43m,[49m
+[32m    570[39m [43m        [49m[43m)[49m
+[32m    572[39m [38;5;28;01mif[39;00m new_columns:
+[32m    573[39m     [38;5;28;01mreturn[39;00m _update_columns(df, new_columns)
+
+[36mFile [39m[32m~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:688[39m, in [36m_read_csv_impl[39m[34m(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)[39m
+[32m    684[39m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(msg)
+[32m    686[39m projection, columns = parse_columns_arg(columns)
+[32m--> [39m[32m688[39m pydf = [43mPyDataFrame[49m[43m.[49m[43mread_csv[49m[43m([49m
+[32m    689[39m [43m    [49m[43msource[49m[43m,[49m
+[32m    690[39m [43m    [49m[43minfer_schema_length[49m[43m,[49m
+[32m    691[39m [43m    [49m[43mbatch_size[49m[43m,[49m
+[32m    692[39m [43m    [49m[43mhas_header[49m[43m,[49m
+[32m    693[39m [43m    [49m[43mignore_errors[49m[43m,[49m
+[32m    694[39m [43m    [49m[43mn_rows[49m[43m,[49m
+[32m    695[39m [43m    [49m[43mskip_rows[49m[43m,[49m
+[32m    696[39m [43m    [49m[43mskip_lines[49m[43m,[49m
+[32m    697[39m [43m    [49m[43mprojection[49m[43m,[49m
+[32m    698[39m [43m    [49m[43mseparator[49m[43m,[49m
+[32m    699[39m [43m    [49m[43mrechunk[49m[43m,[49m
+[32m    700[39m [43m    [49m[43mcolumns[49m[43m,[49m
+[32m    701[39m [43m    [49m[43mencoding[49m[43m,[49m
+[32m    702[39m [43m    [49m[43mn_threads[49m[43m,[49m
+[32m    703[39m [43m    [49m[43mpath[49m[43m,[49m
+[32m    704[39m [43m    [49m[43mdtype_list[49m[43m,[49m
+[32m    705[39m [43m    [49m[43mdtype_slice[49m[43m,[49m
+[32m    706[39m [43m    [49m[43mlow_memory[49m[43m,[49m
+[32m    707[39m [43m    [49m[43mcomment_prefix[49m[43m,[49m
+[32m    708[39m [43m    [49m[43mquote_char[49m[43m,[49m
+[32m    709[39m [43m    [49m[43mprocessed_null_values[49m[43m,[49m
+[32m    710[39m [43m    [49m[43mmissing_utf8_is_empty_string[49m[43m,[49m
+[32m    711[39m [43m    [49m[43mtry_parse_dates[49m[43m,[49m
+[32m    712[39m [43m    [49m[43mskip_rows_after_header[49m[43m,[49m
+[32m    713[39m [43m    [49m[43mparse_row_index_args[49m[43m([49m[43mrow_index_name[49m[43m,[49m[43m [49m[43mrow_index_offset[49m[43m)[49m[43m,[49m
+[32m    714[39m [43m    [49m[43meol_char[49m[43m=[49m[43meol_char[49m[43m,[49m
+[32m    715[39m [43m    [49m[43mraise_if_empty[49m[43m=[49m[43mraise_if_empty[49m[43m,[49m
+[32m    716[39m [43m    [49m[43mtruncate_ragged_lines[49m[43m=[49m[43mtruncate_ragged_lines[49m[43m,[49m
+[32m    717[39m [43m    [49m[43mdecimal_comma[49m[43m=[49m[43mdecimal_comma[49m[43m,[49m
+[32m    718[39m [43m    [49m[43mschema[49m[43m=[49m[43mschema[49m[43m,[49m
+[32m    719[39m [43m[49m[43m)[49m
+[32m    720[39m [38;5;28;01mreturn[39;00m wrap_df(pydf)
+
+[31mFileNotFoundError[39m: No such file or directory (os error 2): base_fapesp.csv
+

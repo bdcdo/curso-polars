@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: aula0_intro
+chapters:
+- file: aula1_instalacao
+- file: aula2_leitura
+- file: aula3_exploracao
+- file: aula4_tratamento
+- file: aula5_analiseInicial

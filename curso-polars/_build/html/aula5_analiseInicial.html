@@ -1,0 +1,1084 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Aula 5 - Análise inicial &#8212; Introdução a Polars para xuxus</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aula5_analiseInicial';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Aula 4 - Tratamento e seleção" href="aula4_tratamento.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="aula0_intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introdução a Polars para xuxus</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="aula0_intro.html">
+                    Aula 0 - Introdução
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 5 - Análise inicial</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Faula5_analiseInicial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/aula5_analiseInicial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Aula 5 - Análise inicial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cidades">Cidades</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="aula-5-analise-inicial">
+<h1>Aula 5 - Análise inicial<a class="headerlink" href="#aula-5-analise-inicial" title="Link to this heading">#</a></h1>
+<p>Vamos, depois de iniciar o ambiente lendo agora a base de dados tratada, voltando a utilizar o value_counts() para passar por todas as colunas e ver com mais calma o que cada uma têm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;base_fapesp_tratada.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;base_fapesp_tratada.csv&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:540,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="k">with</span> <span class="n">prepare_file_arg</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">source</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">538</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">540</span>         <span class="n">df</span> <span class="o">=</span> <span class="n">_read_csv_impl</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span>             <span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span>             <span class="n">has_header</span><span class="o">=</span><span class="n">has_header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>             <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="k">if</span> <span class="n">columns</span> <span class="k">else</span> <span class="n">projection</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span>             <span class="n">separator</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span>             <span class="n">comment_prefix</span><span class="o">=</span><span class="n">comment_prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span>             <span class="n">quote_char</span><span class="o">=</span><span class="n">quote_char</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span>             <span class="n">skip_rows</span><span class="o">=</span><span class="n">skip_rows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">548</span>             <span class="n">skip_lines</span><span class="o">=</span><span class="n">skip_lines</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span>             <span class="n">schema_overrides</span><span class="o">=</span><span class="n">schema_overrides</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span>             <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span>             <span class="n">null_values</span><span class="o">=</span><span class="n">null_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">552</span>             <span class="n">missing_utf8_is_empty_string</span><span class="o">=</span><span class="n">missing_utf8_is_empty_string</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span>             <span class="n">ignore_errors</span><span class="o">=</span><span class="n">ignore_errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span>             <span class="n">try_parse_dates</span><span class="o">=</span><span class="n">try_parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>             <span class="n">n_threads</span><span class="o">=</span><span class="n">n_threads</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span>             <span class="n">infer_schema_length</span><span class="o">=</span><span class="n">infer_schema_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span>             <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>             <span class="n">n_rows</span><span class="o">=</span><span class="n">n_rows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span> <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s2">&quot;utf8-lossy&quot;</span> <span class="k">else</span> <span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span>             <span class="n">low_memory</span><span class="o">=</span><span class="n">low_memory</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>             <span class="n">rechunk</span><span class="o">=</span><span class="n">rechunk</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>             <span class="n">skip_rows_after_header</span><span class="o">=</span><span class="n">skip_rows_after_header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span>             <span class="n">row_index_name</span><span class="o">=</span><span class="n">row_index_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span>             <span class="n">row_index_offset</span><span class="o">=</span><span class="n">row_index_offset</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span>             <span class="n">eol_char</span><span class="o">=</span><span class="n">eol_char</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span>             <span class="n">raise_if_empty</span><span class="o">=</span><span class="n">raise_if_empty</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span>             <span class="n">truncate_ragged_lines</span><span class="o">=</span><span class="n">truncate_ragged_lines</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>             <span class="n">decimal_comma</span><span class="o">=</span><span class="n">decimal_comma</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>             <span class="n">glob</span><span class="o">=</span><span class="n">glob</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="k">if</span> <span class="n">new_columns</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="k">return</span> <span class="n">_update_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:688,</span> in <span class="ni">_read_csv_impl</span><span class="nt">(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="n">projection</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">parse_columns_arg</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">688</span> <span class="n">pydf</span> <span class="o">=</span> <span class="n">PyDataFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="n">source</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="n">infer_schema_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">691</span>     <span class="n">batch_size</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span>     <span class="n">has_header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span>     <span class="n">ignore_errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span>     <span class="n">n_rows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">695</span>     <span class="n">skip_rows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="n">skip_lines</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>     <span class="n">projection</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span>     <span class="n">separator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="n">rechunk</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>     <span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="n">n_threads</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">dtype_list</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">dtype_slice</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">low_memory</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">comment_prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="n">quote_char</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>     <span class="n">processed_null_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">missing_utf8_is_empty_string</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>     <span class="n">try_parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span>     <span class="n">skip_rows_after_header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span>     <span class="n">parse_row_index_args</span><span class="p">(</span><span class="n">row_index_name</span><span class="p">,</span> <span class="n">row_index_offset</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>     <span class="n">eol_char</span><span class="o">=</span><span class="n">eol_char</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">raise_if_empty</span><span class="o">=</span><span class="n">raise_if_empty</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="n">truncate_ragged_lines</span><span class="o">=</span><span class="n">truncate_ragged_lines</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span>     <span class="n">decimal_comma</span><span class="o">=</span><span class="n">decimal_comma</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">720</span> <span class="k">return</span> <span class="n">wrap_df</span><span class="p">(</span><span class="n">pydf</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory (os error 2): base_fapesp_tratada.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para cada coluna existente na lista de colunas de df</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="c1"># Imprima a contagem de valores desta coluna, em ordem decrescente    </span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="c1"># E uma linha em branco, para fiar mais organizado.</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape: (155_767, 2)
+┌─────────────┬───────┐
+│ N. Processo ┆ count │
+│ ---         ┆ ---   │
+│ str         ┆ u32   │
+╞═════════════╪═══════╡
+│ 24/23715-0  ┆ 1     │
+│ 24/18372-6  ┆ 1     │
+│ 24/18375-5  ┆ 1     │
+│ 24/18254-3  ┆ 1     │
+│ 24/17879-0  ┆ 1     │
+│ …           ┆ …     │
+│ 92/00085-8  ┆ 1     │
+│ 92/00360-9  ┆ 1     │
+│ 92/00346-6  ┆ 1     │
+│ 92/00384-5  ┆ 1     │
+│ 92/00222-5  ┆ 1     │
+└─────────────┴───────┘
+
+shape: (147_176, 2)
+┌─────────────────────────────────┬───────┐
+│ Título (Português)              ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 190   │
+│ Indivíduos com alto risco para… ┆ 64    │
+│ Desenvolvimento profissional d… ┆ 50    │
+│ Colaboração universidade-escol… ┆ 40    │
+│ Arquivo Histórico Municipal Wa… ┆ 35    │
+│ …                               ┆ …     │
+│ Efeito do bloqueio da via L-ar… ┆ 1     │
+│ Ácaros hematófagos em aviários… ┆ 1     │
+│ Levantamento do estado nutrici… ┆ 1     │
+│ Levantamento do estado nutrici… ┆ 1     │
+│ Isolamento de revertentes norm… ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (80_232, 2)
+┌─────────────────────────────────┬───────┐
+│ Título (Inglês)                 ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 72854 │
+│ Individuals with high risk for… ┆ 38    │
+│ Implementation and evaluation … ┆ 23    │
+│ University-public school colla… ┆ 21    │
+│ SUCCESSFUL EDUCATIONAL ACTIONS… ┆ 19    │
+│ …                               ┆ …     │
+│ Aspects of the hydrological cy… ┆ 1     │
+│ Characterization of gases and … ┆ 1     │
+│ Introduction to fuzzy logics: … ┆ 1     │
+│ Investigation of rates of carb… ┆ 1     │
+│ Effect of land use on the carb… ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (117_470, 2)
+┌─────────────────────────────────┬───────┐
+│ Beneficiário                    ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ Gabriela de Oliveira            ┆ 9     │
+│ Bruna Cavecci Mendonça          ┆ 8     │
+│ Alexandre Alves                 ┆ 8     │
+│ Karina Omuro Lupetti            ┆ 7     │
+│ Cristiane de Oliveira           ┆ 7     │
+│ …                               ┆ …     │
+│ Ana Claudia Moreira Cardoso     ┆ 1     │
+│ Sergio Luis Ramos Martins       ┆ 1     │
+│ Andrea Godoy Vicente            ┆ 1     │
+│ Marsia Antonieta de Souza Guil… ┆ 1     │
+│ Ivan Ferdinando Gergoletti      ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (993, 2)
+┌─────────────────────────────────┬───────┐
+│ Instituição                     ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 5680  │
+│ Universidade de São Paulo (USP… ┆ 4520  │
+│ Universidade de São Paulo (USP… ┆ 3977  │
+│ Universidade de São Paulo (USP… ┆ 3908  │
+│ Universidade Federal de São Pa… ┆ 3658  │
+│ …                               ┆ …     │
+│ Pontifícia Universidade Católi… ┆ 1     │
+│ Universidade Estadual de Campi… ┆ 1     │
+│ Universidade Municipal de São … ┆ 1     │
+│ Faculdade de Engenharia de Sor… ┆ 1     │
+│ Asilo São Vicente de Paulo      ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (125, 2)
+┌──────────────────────────┬───────┐
+│ Cidade Instituição       ┆ count │
+│ ---                      ┆ ---   │
+│ str                      ┆ u32   │
+╞══════════════════════════╪═══════╡
+│ São Paulo                ┆ 49279 │
+│ Campinas                 ┆ 22621 │
+│ São Carlos               ┆ 14888 │
+│ Ribeirão Preto           ┆ 10875 │
+│ Botucatu                 ┆ 6299  │
+│ …                        ┆ …     │
+│ Guarujá                  ┆ 1     │
+│ Espírito Santo do Pinhal ┆ 1     │
+│ Agudos                   ┆ 1     │
+│ Batatais                 ┆ 1     │
+│ Mirassol                 ┆ 1     │
+└──────────────────────────┴───────┘
+
+shape: (1_614, 2)
+┌─────────────────────────────────┬────────┐
+│ Instituição Parceira            ┆ count  │
+│ ---                             ┆ ---    │
+│ str                             ┆ u32    │
+╞═════════════════════════════════╪════════╡
+│ null                            ┆ 149488 │
+│ Universidade de São Paulo (USP… ┆ 87     │
+│ Cientistas Associados Desenvol… ┆ 61     │
+│ Universidade Estadual de Campi… ┆ 52     │
+│ Universidade Estadual de Campi… ┆ 37     │
+│ …                               ┆ …      │
+│ Intuição S/C Ltda               ┆ 1      │
+│ Comacol São Carlos Comércio de… ┆ 1      │
+│ Elemed Equipamentos Médico-Hos… ┆ 1      │
+│ Jotaema - Fitafer Indústria Me… ┆ 1      │
+│ Unilaser Indústria e Comércio … ┆ 1      │
+└─────────────────────────────────┴────────┘
+
+shape: (21_767, 2)
+┌─────────────────────────────────┬───────┐
+│ Pesquisador Responsável         ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ Marília Afonso Rabelo Buzalaf   ┆ 139   │
+│ Anete Pereira de Souza          ┆ 134   │
+│ Gonçalo Amarante Guimarães Per… ┆ 133   │
+│ Maria Angelica Miglino          ┆ 128   │
+│ Rubens Maciel Filho             ┆ 127   │
+│ …                               ┆ …     │
+│ Gastao Rúbio de Sá Weyne        ┆ 1     │
+│ Jose Fernando Perez             ┆ 1     │
+│ Isaias Raw                      ┆ 1     │
+│ Adelia Cristina Oliveira Cintr… ┆ 1     │
+│ Marcus Faria Figueiredo         ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (97, 2)
+┌─────────────────────────────────┬────────┐
+│ Local de Pesquisa               ┆ count  │
+│ ---                             ┆ ---    │
+│ str                             ┆ u32    │
+╞═════════════════════════════════╪════════╡
+│ null                            ┆ 155465 │
+│ Universidade Estadual de Campi… ┆ 57     │
+│ Universidade Estadual de Campi… ┆ 56     │
+│ Secretaria de Desenvolvimento … ┆ 11     │
+│ Universidade de São Paulo (USP… ┆ 10     │
+│ …                               ┆ …      │
+│ Universidade Estadual de Campi… ┆ 1      │
+│ Serviço Nacional de Aprendizag… ┆ 1      │
+│ Universidade de São Paulo (USP… ┆ 1      │
+│ Universidade de São Paulo (USP… ┆ 1      │
+│ Secretaria de Desenvolvimento … ┆ 1      │
+└─────────────────────────────────┴────────┘
+
+shape: (22, 2)
+┌─────────────────────────────────┬───────┐
+│ Modalidade de apoio             ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ Bolsas no Brasil - Iniciação C… ┆ 61958 │
+│ Bolsas no Brasil - Mestrado     ┆ 29920 │
+│ Bolsas no Brasil - Doutorado    ┆ 21733 │
+│ Bolsas no Brasil - Programa Ca… ┆ 18195 │
+│ Bolsas no Brasil - Pós-Doutora… ┆ 15422 │
+│ …                               ┆ …     │
+│ Bolsas no Brasil - Programa BI… ┆ 8     │
+│ Bolsas no Brasil - Programa de… ┆ 4     │
+│ Bolsas no Brasil - Programa eS… ┆ 4     │
+│ Bolsas no Brasil - Programa BI… ┆ 2     │
+│ Bolsas no Brasil - Programa de… ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (9, 2)
+┌─────────────────────────────┬───────┐
+│ Grande Área do Conhecimento ┆ count │
+│ ---                         ┆ ---   │
+│ str                         ┆ u32   │
+╞═════════════════════════════╪═══════╡
+│ Ciências Biológicas         ┆ 34201 │
+│ Ciências da Saúde           ┆ 26943 │
+│ Ciências Exatas e da Terra  ┆ 26081 │
+│ Ciências Agrárias           ┆ 19452 │
+│ Engenharias                 ┆ 17002 │
+│ Ciências Humanas            ┆ 16937 │
+│ Ciências Sociais Aplicadas  ┆ 7284  │
+│ Linguística, Letras e Artes ┆ 6190  │
+│ Interdisciplinar            ┆ 1677  │
+└─────────────────────────────┴───────┘
+
+shape: (77, 2)
+┌──────────────────────┬───────┐
+│ Área do Conhecimento ┆ count │
+│ ---                  ┆ ---   │
+│ str                  ┆ u32   │
+╞══════════════════════╪═══════╡
+│ Medicina             ┆ 9868  │
+│ Química              ┆ 7974  │
+│ Odontologia          ┆ 7032  │
+│ Medicina Veterinária ┆ 6111  │
+│ Física               ┆ 5580  │
+│ …                    ┆ …     │
+│ Engenharia de Minas  ┆ 92    │
+│ Demografia           ┆ 91    │
+│ Teologia             ┆ 45    │
+│ Museologia           ┆ 42    │
+│ Economia Doméstica   ┆ 1     │
+└──────────────────────┴───────┘
+
+shape: (340, 2)
+┌─────────────────────────────────┬───────┐
+│ Subárea do Conhecimento         ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 26274 │
+│ Clínica Médica                  ┆ 3992  │
+│ Biologia Molecular              ┆ 2654  │
+│ Física da Matéria Condensada    ┆ 2458  │
+│ Química Orgânica                ┆ 2448  │
+│ …                               ┆ …     │
+│ Ópera                           ┆ 2     │
+│ Tecnologia de Construção Naval… ┆ 2     │
+│ Combustível Nuclear             ┆ 1     │
+│ Teologia Moral                  ┆ 1     │
+│ Fontes de Dados Demográficos    ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (135_520, 2)
+┌─────────────────────────────────┬───────┐
+│ Assuntos                        ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 6756  │
+│ Escola pública:Pesquisa-ação:D… ┆ 44    │
+│ Método dos elementos finitos    ┆ 39    │
+│ Sistemas dinâmicos              ┆ 38    │
+│ História das cidades:História … ┆ 36    │
+│ …                               ┆ …     │
+│ L-arginina                      ┆ 1     │
+│ Ácaros:Aviários                 ┆ 1     │
+│ Videiras:Nutrição de plantas:N… ┆ 1     │
+│ Videiras:Nutrição vegetal       ┆ 1     │
+│ Fator de transcrição AP-1:Tran… ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (501, 2)
+┌────────────────────────────┬───────┐
+│ Data de Início             ┆ count │
+│ ---                        ┆ ---   │
+│ str                        ┆ u32   │
+╞════════════════════════════╪═══════╡
+│ 2012-03-01T00:00:00.000000 ┆ 1434  │
+│ 2011-08-01T00:00:00.000000 ┆ 1433  │
+│ 2011-03-01T00:00:00.000000 ┆ 1272  │
+│ 2010-03-01T00:00:00.000000 ┆ 1246  │
+│ 2009-03-01T00:00:00.000000 ┆ 1225  │
+│ …                          ┆ …     │
+│ 1993-05-21T00:00:00.000000 ┆ 1     │
+│ 1992-11-15T00:00:00.000000 ┆ 1     │
+│ 1992-09-10T00:00:00.000000 ┆ 1     │
+│ 1992-04-11T00:00:00.000000 ┆ 1     │
+│ 1992-02-01T00:00:00.000000 ┆ 1     │
+└────────────────────────────┴───────┘
+
+shape: (4_391, 2)
+┌────────────────────────────┬───────┐
+│ Data de Término            ┆ count │
+│ ---                        ┆ ---   │
+│ str                        ┆ u32   │
+╞════════════════════════════╪═══════╡
+│ 2012-02-29T00:00:00.000000 ┆ 1156  │
+│ 2010-02-28T00:00:00.000000 ┆ 1146  │
+│ 2013-02-28T00:00:00.000000 ┆ 1143  │
+│ 2014-02-28T00:00:00.000000 ┆ 1134  │
+│ 2011-02-28T00:00:00.000000 ┆ 1080  │
+│ …                          ┆ …     │
+│ 1992-09-30T00:00:00.000000 ┆ 1     │
+│ 1994-08-14T00:00:00.000000 ┆ 1     │
+│ 1992-12-15T00:00:00.000000 ┆ 1     │
+│ 1995-05-10T00:00:00.000000 ┆ 1     │
+│ 1992-08-31T00:00:00.000000 ┆ 1     │
+└────────────────────────────┴───────┘
+
+shape: (113, 2)
+┌─────────────────────────────────┬────────┐
+│ Acordo(s)/Convênio(s) de Coope… ┆ count  │
+│ ---                             ┆ ---    │
+│ str                             ┆ u32    │
+╞═════════════════════════════════╪════════╡
+│ null                            ┆ 148724 │
+│ Coordenação de Aperfeiçoamento… ┆ 3876   │
+│ MCTI/MC                         ┆ 296    │
+│ CNPq - PPSUS                    ┆ 225    │
+│ SEBRAE-SP                       ┆ 213    │
+│ …                               ┆ …      │
+│ University of Birmingham        ┆ 1      │
+│ Fundação Grupo Boticário        ┆ 1      │
+│ ISTP Canada                     ┆ 1      │
+│ Oxiteno                         ┆ 1      │
+│ Comitê Francês de Avaliação da… ┆ 1      │
+└─────────────────────────────────┴────────┘
+
+shape: (99, 2)
+┌─────────────────────────────────┬────────┐
+│ Instituições no Exterior        ┆ count  │
+│ ---                             ┆ ---    │
+│ str                             ┆ u32    │
+╞═════════════════════════════════╪════════╡
+│ null                            ┆ 155461 │
+│ Universidade Estadual de Campi… ┆ 57     │
+│ Universidade Estadual de Campi… ┆ 56     │
+│ Secretaria de Desenvolvimento … ┆ 11     │
+│ Universidade de São Paulo (USP… ┆ 10     │
+│ …                               ┆ …      │
+│ Universidade Estadual de Campi… ┆ 1      │
+│ Serviço Nacional de Aprendizag… ┆ 1      │
+│ Universidade de São Paulo (USP… ┆ 1      │
+│ Universidade de São Paulo (USP… ┆ 1      │
+│ Secretaria de Desenvolvimento … ┆ 1      │
+└─────────────────────────────────┴────────┘
+
+shape: (25, 2)
+┌─────────────────────────────┬────────┐
+│ Pais de Origem              ┆ count  │
+│ ---                         ┆ ---    │
+│ str                         ┆ u32    │
+╞═════════════════════════════╪════════╡
+│ null                        ┆ 154207 │
+│ Estados Unidos              ┆ 339    │
+│ Reino Unido                 ┆ 303    │
+│ Brasil                      ┆ 286    │
+│ Organizações multinacionais ┆ 213    │
+│ …                           ┆ …      │
+│ Israel                      ┆ 4      │
+│ África do Sul               ┆ 3      │
+│ Finlândia                   ┆ 3      │
+│ Colômbia                    ┆ 2      │
+│ Coréia do Sul               ┆ 1      │
+└─────────────────────────────┴────────┘
+
+shape: (6, 2)
+┌─────────────────────────────────┬────────┐
+│ Pesquisador responsável no ext… ┆ count  │
+│ ---                             ┆ ---    │
+│ str                             ┆ u32    │
+╞═════════════════════════════════╪════════╡
+│ null                            ┆ 155762 │
+│ Rafael de Almeida Evangelista   ┆ 1      │
+│ Charles R. Martin               ┆ 1      │
+│ Charles Y. Cao                  ┆ 1      │
+│ Rebecca A. Butcher              ┆ 1      │
+│ Alan R. Katritzky               ┆ 1      │
+└─────────────────────────────────┴────────┘
+
+shape: (145_093, 2)
+┌─────────────────────────────────┬───────┐
+│ Resumo (Português)              ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 7037  │
+│ O presente projeto se destina … ┆ 22    │
+│ Escola inclusiva é aquela que … ┆ 21    │
+│ Os primeiros anos da carreira … ┆ 18    │
+│ O projeto visa institucionaliz… ┆ 18    │
+│ …                               ┆ …     │
+│ O modelo da Tripanotlona Reduc… ┆ 1     │
+│ A bothropstoxina-I (BthTX-I) f… ┆ 1     │
+│ Está sendo realizado um levant… ┆ 1     │
+│ Está sendo realizado um levant… ┆ 1     │
+│ O projeto atual visa analisar … ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (62_682, 2)
+┌─────────────────────────────────┬───────┐
+│ Resumo (Inglês)                 ┆ count │
+│ ---                             ┆ ---   │
+│ str                             ┆ u32   │
+╞═════════════════════════════════╪═══════╡
+│ null                            ┆ 92755 │
+│ . (AU)                          ┆ 9     │
+│ The electrochemical immittance… ┆ 7     │
+│ Population studies have often … ┆ 6     │
+│ Based on our previous experien… ┆ 6     │
+│ …                               ┆ …     │
+│ Evaluación comparativa entre i… ┆ 1     │
+│ The aim of the Project is to g… ┆ 1     │
+│ Analiza las condiciones histór… ┆ 1     │
+│ La motivación es la del &quot;&quot;prob… ┆ 1     │
+│ Los mecanismos de acificación … ┆ 1     │
+└─────────────────────────────────┴───────┘
+
+shape: (10_620, 2)
+┌────────────────────────┬────────┐
+│ Processos Vinculados   ┆ count  │
+│ ---                    ┆ ---    │
+│ str                    ┆ u32    │
+╞════════════════════════╪════════╡
+│ null                   ┆ 145148 │
+│ 25/03025-1             ┆ 1      │
+│ 25/03370-0             ┆ 1      │
+│ 24/21935-2             ┆ 1      │
+│ 25/00188-7             ┆ 1      │
+│ …                      ┆ …      │
+│ 01/13293-9, 03/05846-3 ┆ 1      │
+│ 01/08143-8             ┆ 1      │
+│ 00/10181-2             ┆ 1      │
+│ 00/10522-4             ┆ 1      │
+│ 02/08687-0             ┆ 1      │
+└────────────────────────┴────────┘
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lendo esses dados, podemos começar a desenvolver algumas curiosidades:</p>
+<ol class="arabic simple">
+<li><p>Quais são as cidades que mais recebem financiamento? - col relevante: Cidade Instituição</p></li>
+<li><p>Quais são as principais áreas do conhecimento e como elas se dividem entre as grandes áreas? - cols relevantes: Grande Área do Conhecimento e Área do Conhecimento</p></li>
+<li><p>Quais são as instituições que mais recebem financiamento? - col relevante: Instituição</p></li>
+<li><p>Quais são as modalidades de apoio mais comuns? - col relevante: Modalidade de apoio</p></li>
+<li><p>Como se deu a distribuição das bolsas no tempo? - cols relevantes: Data de Início e Data de Término</p></li>
+</ol>
+<p>Evidentemente existem diversas outras colunas no dataframe e diversas outras perguntas poderiam estar sendo feitas, mas vamos começar com estas, respondendo-as na ordem proposta.</p>
+<section id="cidades">
+<h2>Cidades<a class="headerlink" href="#cidades" title="Link to this heading">#</a></h2>
+<p>Em desenvolvimento…</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="aula4_tratamento.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Aula 4 - Tratamento e seleção</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cidades">Cidades</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bruno da Cunha de Oliveira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
