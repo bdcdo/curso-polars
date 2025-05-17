@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Aula 3 - Exploração inicial &#8212; Introdução a Polars para xuxus</title>
+    <title>3. Exploração inicial &#8212; Introdução a Polars para xuxus</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'aula3_exploracao';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Aula 4 - Tratamento e seleção de colunas" href="aula4_tratamento.html" />
-    <link rel="prev" title="Aula 2 - Leitura e escrita da bases de dados" href="aula2_leitura.html" />
+    <link rel="next" title="4. Tratamento e seleção de colunas" href="aula4_tratamento.html" />
+    <link rel="prev" title="2. Leitura e escrita da bases de dados" href="aula2_leitura.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,18 +169,17 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="aula0_intro.html">
-                    Aula 0 - Introdução
+                    0. Introdução
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e importação do polars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção de colunas</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">1. Instalação e importação do polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">2. Leitura e escrita da bases de dados</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Exploração inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">4. Tratamento e seleção de colunas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">5. Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">6. Análise dos dados - Parte 1</a></li>
 </ul>
 
     </div>
@@ -366,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Aula 3 - Exploração inicial</h1>
+    <h1>3. Exploração inicial</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -393,8 +392,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="aula-3-exploracao-inicial">
-<h1>Aula 3 - Exploração inicial<a class="headerlink" href="#aula-3-exploracao-inicial" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="exploracao-inicial">
+<h1>3. Exploração inicial<a class="headerlink" href="#exploracao-inicial" title="Link to this heading">#</a></h1>
 <p>Começamos preparando nosso ambiente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,7 +605,7 @@ Annually, millions of tons of…</td><td>&quot;00/10181-2&quot;</td></tr><tr><td
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (10, 2)</small><table border="1" class="dataframe"><thead><tr><th>Grande Área do Conhecimento</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Interdisciplinar&quot;</td><td>1677</td></tr><tr><td>null</td><td>6</td></tr><tr><td>&quot;Ciências Sociais Aplicadas&quot;</td><td>7284</td></tr><tr><td>&quot;Ciências Humanas&quot;</td><td>16937</td></tr><tr><td>&quot;Ciências da Saúde&quot;</td><td>26943</td></tr><tr><td>&quot;Ciências Agrárias&quot;</td><td>19452</td></tr><tr><td>&quot;Engenharias&quot;</td><td>17002</td></tr><tr><td>&quot;Ciências Exatas e da Terra&quot;</td><td>26081</td></tr><tr><td>&quot;Linguística, Letras e Artes&quot;</td><td>6190</td></tr><tr><td>&quot;Ciências Biológicas&quot;</td><td>34201</td></tr></tbody></table></div></div></div>
+<small>shape: (10, 2)</small><table border="1" class="dataframe"><thead><tr><th>Grande Área do Conhecimento</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>6</td></tr><tr><td>&quot;Ciências Biológicas&quot;</td><td>34201</td></tr><tr><td>&quot;Interdisciplinar&quot;</td><td>1677</td></tr><tr><td>&quot;Linguística, Letras e Artes&quot;</td><td>6190</td></tr><tr><td>&quot;Ciências Exatas e da Terra&quot;</td><td>26081</td></tr><tr><td>&quot;Ciências da Saúde&quot;</td><td>26943</td></tr><tr><td>&quot;Ciências Humanas&quot;</td><td>16937</td></tr><tr><td>&quot;Engenharias&quot;</td><td>17002</td></tr><tr><td>&quot;Ciências Sociais Aplicadas&quot;</td><td>7284</td></tr><tr><td>&quot;Ciências Agrárias&quot;</td><td>19452</td></tr></tbody></table></div></div></div>
 </div>
 <p>Uma coisa chata que eu não sabia do polars é que, pra ganhar velocidade, ele não te retorna automaticamente o resultado de value_counts() do maior para o menor. No entanto, para isso, basta utilizar <code class="docutils literal notranslate"><span class="pre">sort=True</span></code>.</p>
 <div class="cell docutils container">
@@ -673,7 +672,7 @@ Annually, millions of tons of…</td><td>&quot;00/10181-2&quot;</td></tr><tr><td
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aula 2 - Leitura e escrita da bases de dados</p>
+        <p class="prev-next-title">2. Leitura e escrita da bases de dados</p>
       </div>
     </a>
     <a class="right-next"
@@ -681,7 +680,7 @@ Annually, millions of tons of…</td><td>&quot;00/10181-2&quot;</td></tr><tr><td
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Aula 4 - Tratamento e seleção de colunas</p>
+        <p class="prev-next-title">4. Tratamento e seleção de colunas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

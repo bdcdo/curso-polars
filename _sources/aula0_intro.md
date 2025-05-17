@@ -1,4 +1,4 @@
-# Aula 0 - Introdução
+# 0. Introdução
 
 Oi, xuxu! Te amo muitão!
 

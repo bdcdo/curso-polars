@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Aula 4 - Tratamento e seleção de colunas &#8212; Introdução a Polars para xuxus</title>
+    <title>4. Tratamento e seleção de colunas &#8212; Introdução a Polars para xuxus</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'aula4_tratamento';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Aula 5 - Visão geral inicial" href="aula5_analiseInicial.html" />
-    <link rel="prev" title="Aula 3 - Exploração inicial" href="aula3_exploracao.html" />
+    <link rel="next" title="5. Visão geral inicial" href="aula5_analiseInicial.html" />
+    <link rel="prev" title="3. Exploração inicial" href="aula3_exploracao.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,17 +169,17 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="aula0_intro.html">
-                    Aula 0 - Introdução
+                    0. Introdução
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e importação do polars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 4 - Tratamento e seleção de colunas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">1. Instalação e importação do polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">2. Leitura e escrita da bases de dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">3. Exploração inicial</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Tratamento e seleção de colunas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">5. Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">6. Análise dos dados - Parte 1</a></li>
 </ul>
 
     </div>
@@ -365,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Aula 4 - Tratamento e seleção de colunas</h1>
+    <h1>4. Tratamento e seleção de colunas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,8 +391,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="aula-4-tratamento-e-selecao-de-colunas">
-<h1>Aula 4 - Tratamento e seleção de colunas<a class="headerlink" href="#aula-4-tratamento-e-selecao-de-colunas" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tratamento-e-selecao-de-colunas">
+<h1>4. Tratamento e seleção de colunas<a class="headerlink" href="#tratamento-e-selecao-de-colunas" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
@@ -492,7 +492,7 @@ document.write(`
 </style>
 <small>shape: (155_773, 30)</small><table border="1" class="dataframe"><thead><tr><th>N. Processo</th><th>Título (Português)</th><th>Título (Inglês)</th><th>Beneficiário</th><th>Instituição</th><th>Cidade Instituição</th><th>Instituição Parceira</th><th>Empresa</th><th>Município</th><th>Pesquisador Responsável</th><th>Pesquisadores Principais</th><th>Pesquisadores Associados</th><th>Supervisor</th><th>Local de Pesquisa</th><th>Pesquisador Visitante</th><th>Instituição do Pesquisador Visitante</th><th>Modalidade de apoio</th><th>Grande Área do Conhecimento</th><th>Área do Conhecimento</th><th>Subárea do Conhecimento</th><th>Assuntos</th><th>Data de Início</th><th>Data de Término</th><th>Acordo(s)/Convênio(s) de Cooperação com a FAPESP</th><th>Instituições no Exterior</th><th>Pais de Origem</th><th>Pesquisador responsável no exterior</th><th>Resumo (Português)</th><th>Resumo (Inglês)</th><th>Processos Vinculados</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;24/23715-0&quot;</td><td>&quot;Sensibilização, formação e mon…</td><td>&quot;Sensitization, training and mo…</td><td>&quot;Donina Cibelle de Lemos Rocha&quot;</td><td>&quot;Universidade de São Paulo (USP…</td><td>&quot;São Paulo&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;Vitor Souza Lima Blotta&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Bolsas no Brasil - Programa Ca…</td><td>&quot;Ciências Humanas&quot;</td><td>&quot;Educação&quot;</td><td>&quot;Tópicos Específicos de Educaçã…</td><td>&quot;Educomunicação&quot;</td><td>&quot;2025-04-01&quot;</td><td>&quot;2025-04-30&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Trabalho de educação em direit…</td><td>null</td><td>null</td></tr><tr><td>&quot;24/18372-6&quot;</td><td>&quot;Democracia e afetos: construin…</td><td>&quot;Democracy and affections: buil…</td><td>&quot;Yasmin Guerreiro Soares Freita…</td><td>&quot;Universidade de São Paulo (USP…</td><td>&quot;São Paulo&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;Renato Janine Ribeiro&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Bolsas no Brasil - Programa Es…</td><td>&quot;Ciências Humanas&quot;</td><td>&quot;Filosofia&quot;</td><td>null</td><td>&quot;Direito:Democracia:Relações de…</td><td>&quot;2025-03-01&quot;</td><td>&quot;2025-04-06&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;O projeto tem como objetivo in…</td><td>&quot;The project aims to investigat…</td><td>null</td></tr><tr><td>&quot;24/18375-5&quot;</td><td>&quot;Influência da melanina na sens…</td><td>&quot;Influence of melanin on the se…</td><td>&quot;Isabella Bastos Reis&quot;</td><td>&quot;Universidade de São Paulo (USP…</td><td>&quot;São Carlos&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;Vanderlei Salvador Bagnato&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Bolsas no Brasil - Programa Es…</td><td>&quot;Ciências Biológicas&quot;</td><td>&quot;Biofísica&quot;</td><td>&quot;Biofísica Celular&quot;</td><td>&quot;Células tumorais:Melaninas:Fen…</td><td>&quot;2025-02-24&quot;</td><td>&quot;2025-04-12&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;A terapia fotodinâmica (TFD) é…</td><td>&quot;Photodynamic therapy (PDT) is …</td><td>null</td></tr><tr><td>&quot;24/18254-3&quot;</td><td>&quot;Efeitos do ácido valproico na …</td><td>&quot;Effects of valproic acid in th…</td><td>&quot;Isadora Gonçalves Almeida&quot;</td><td>&quot;Universidade Federal do Rio de…</td><td>&quot;Rio de Janeiro&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;Adalberto Ramon Vieyra&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Bolsas no Brasil - Programa Es…</td><td>&quot;Ciências Biológicas&quot;</td><td>&quot;Fisiologia&quot;</td><td>&quot;Fisiologia de Órgãos e Sistema…</td><td>&quot;Ácido valproico:Histona desace…</td><td>&quot;2025-02-17&quot;</td><td>&quot;2025-04-04&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;O processo de isquemia renal s…</td><td>&quot;The process of renal ischemia …</td><td>null</td></tr><tr><td>&quot;24/17879-0&quot;</td><td>&quot;Treinamento em manipulação e c…</td><td>&quot;Training in manipulation and c…</td><td>&quot;Mariana Eberle dos Santos&quot;</td><td>&quot;FIOCRUZ PARANA INSTITUTO CARLO…</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Marcio Lourenço Rodrigues&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Bolsas no Brasil - Programa Es…</td><td>&quot;Ciências Biológicas&quot;</td><td>&quot;Microbiologia&quot;</td><td>&quot;Biologia e Fisiologia dos Micr…</td><td>&quot;Micologia:Cryptococcus:Parede …</td><td>&quot;2025-02-17&quot;</td><td>&quot;2025-04-05&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;O projeto de iniciação científ…</td><td>&quot;The undergrad project of the s…</td><td>null</td></tr><tr><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td><td>&hellip;</td></tr><tr><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;&gt;&gt;&gt; Biblioteca Virtual da FAPE…</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;Dados atualizados em: 10/May/2…</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>&quot;URL: https://bv.fapesp.br/&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
 </div>
-<p>Para que a exclusão seja permanente, precisamos salvar o resultado. Antes de fazer isso, no entanto, vamos identificar quais colunas não tem nenhum valor não nulo.</p>
+<p>Para que a exclusão seja permanente, precisamos salvar o resultado. Antes de fazer isso, no entanto, vamos identificar quais colunas tem apenas valores nulos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -688,7 +688,7 @@ Se indicamos uma coluna ainda não existente, ela é criada. Se indicamos uma co
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aula 3 - Exploração inicial</p>
+        <p class="prev-next-title">3. Exploração inicial</p>
       </div>
     </a>
     <a class="right-next"
@@ -696,7 +696,7 @@ Se indicamos uma coluna ainda não existente, ela é criada. Se indicamos uma co
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Aula 5 - Visão geral inicial</p>
+        <p class="prev-next-title">5. Visão geral inicial</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
