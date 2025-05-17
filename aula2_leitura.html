@@ -180,6 +180,7 @@
 <li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">4. Tratamento e seleção de colunas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">5. Visão geral inicial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">6. Análise dos dados - Parte 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula7_analise_pt2.html">7. Análise dos dados - Parte 2</a></li>
 </ul>
 
     </div>
@@ -234,7 +235,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/bdcdo/curso-polars" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -251,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Faula2_leitura.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/bdcdo/curso-polars/issues/new?title=Issue%20on%20page%20%2Faula2_leitura.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -415,7 +416,7 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;bolsas_no_brasil_concluidas.csv&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -423,7 +424,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -431,7 +432,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -439,7 +440,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/csv/functions.py:540,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:540,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
 <span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="k">with</span> <span class="n">prepare_file_arg</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">source</span><span class="p">,</span>
@@ -480,7 +481,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="k">if</span> <span class="n">new_columns</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="k">return</span> <span class="n">_update_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/csv/functions.py:688,</span> in <span class="ni">_read_csv_impl</span><span class="nt">(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:688,</span> in <span class="ni">_read_csv_impl</span><span class="nt">(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
 <span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="n">projection</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">parse_columns_arg</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">688</span> <span class="n">pydf</span> <span class="o">=</span> <span class="n">PyDataFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>

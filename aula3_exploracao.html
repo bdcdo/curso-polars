@@ -180,6 +180,7 @@
 <li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">4. Tratamento e seleção de colunas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">5. Visão geral inicial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">6. Análise dos dados - Parte 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula7_analise_pt2.html">7. Análise dos dados - Parte 2</a></li>
 </ul>
 
     </div>
@@ -234,7 +235,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/bdcdo/curso-polars" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -251,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Faula3_exploracao.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/bdcdo/curso-polars/issues/new?title=Issue%20on%20page%20%2Faula3_exploracao.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -605,7 +606,7 @@ Annually, millions of tons of…</td><td>&quot;00/10181-2&quot;</td></tr><tr><td
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (10, 2)</small><table border="1" class="dataframe"><thead><tr><th>Grande Área do Conhecimento</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>6</td></tr><tr><td>&quot;Ciências Biológicas&quot;</td><td>34201</td></tr><tr><td>&quot;Interdisciplinar&quot;</td><td>1677</td></tr><tr><td>&quot;Linguística, Letras e Artes&quot;</td><td>6190</td></tr><tr><td>&quot;Ciências Exatas e da Terra&quot;</td><td>26081</td></tr><tr><td>&quot;Ciências da Saúde&quot;</td><td>26943</td></tr><tr><td>&quot;Ciências Humanas&quot;</td><td>16937</td></tr><tr><td>&quot;Engenharias&quot;</td><td>17002</td></tr><tr><td>&quot;Ciências Sociais Aplicadas&quot;</td><td>7284</td></tr><tr><td>&quot;Ciências Agrárias&quot;</td><td>19452</td></tr></tbody></table></div></div></div>
+<small>shape: (10, 2)</small><table border="1" class="dataframe"><thead><tr><th>Grande Área do Conhecimento</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Ciências da Saúde&quot;</td><td>26943</td></tr><tr><td>&quot;Ciências Exatas e da Terra&quot;</td><td>26081</td></tr><tr><td>&quot;Ciências Sociais Aplicadas&quot;</td><td>7284</td></tr><tr><td>&quot;Engenharias&quot;</td><td>17002</td></tr><tr><td>&quot;Interdisciplinar&quot;</td><td>1677</td></tr><tr><td>&quot;Ciências Biológicas&quot;</td><td>34201</td></tr><tr><td>null</td><td>6</td></tr><tr><td>&quot;Linguística, Letras e Artes&quot;</td><td>6190</td></tr><tr><td>&quot;Ciências Humanas&quot;</td><td>16937</td></tr><tr><td>&quot;Ciências Agrárias&quot;</td><td>19452</td></tr></tbody></table></div></div></div>
 </div>
 <p>Uma coisa chata que eu não sabia do polars é que, pra ganhar velocidade, ele não te retorna automaticamente o resultado de value_counts() do maior para o menor. No entanto, para isso, basta utilizar <code class="docutils literal notranslate"><span class="pre">sort=True</span></code>.</p>
 <div class="cell docutils container">
