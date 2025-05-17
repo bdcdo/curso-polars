@@ -352,7 +352,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -368,6 +370,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quais-sao-as-instituicoes-que-mais-recebem-financiamento">Quais são as instituições que mais recebem financiamento?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurando-a-exibicao-dos-data-frames">Configurando a exibição dos Data Frames</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voltando-a-analise">Voltando à análise</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -415,6 +429,257 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="quais-sao-as-instituicoes-que-mais-recebem-financiamento">
+<h2>Quais são as instituições que mais recebem financiamento?<a class="headerlink" href="#quais-sao-as-instituicoes-que-mais-recebem-financiamento" title="Link to this heading">#</a></h2>
+<p>Para receber isso, vamos trabalhar com a coluna ‘Instituição’. Vamos começar contando os valores ali existentes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (993, 2)</small><table border="1" class="dataframe"><thead><tr><th>Instituição</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>5680</td></tr><tr><td>&quot;Universidade de São Paulo (USP…</td><td>4520</td></tr><tr><td>&quot;Universidade de São Paulo (USP…</td><td>3977</td></tr><tr><td>&quot;Universidade de São Paulo (USP…</td><td>3908</td></tr><tr><td>&quot;Universidade Federal de São Pa…</td><td>3658</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Pontifícia Universidade Católi…</td><td>1</td></tr><tr><td>&quot;Universidade Estadual de Campi…</td><td>1</td></tr><tr><td>&quot;Universidade Municipal de São …</td><td>1</td></tr><tr><td>&quot;Faculdade de Engenharia de Sor…</td><td>1</td></tr><tr><td>&quot;Asilo São Vicente de Paulo&quot;</td><td>1</td></tr></tbody></table></div></div></div>
+</div>
+<p>Aqui esbarramos em um problema. Não conseguimos ler o conteúdo completo de cada item.</p>
+<p>Poderiamos burlar isso acessando itens individuais:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Universidade de São Paulo (USP). Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Universidade de São Paulo (USP). Instituto de Ciências Biomédicas (ICB)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>O que estamos ali fazendo é:</p>
+<p><code class="docutils literal notranslate"><span class="pre">df['Instituição'].value_counts(sort=True)</span></code>: calculamos o dataframe que vimos anteriormente.</p>
+<p><code class="docutils literal notranslate"><span class="pre">['Instituição']</span></code>: selecionamos a coluna que nos interessa. Poderia ser também ‘count’.</p>
+<p><code class="docutils literal notranslate"><span class="pre">[&lt;numero</span> <span class="pre">da</span> <span class="pre">linha&gt;]</span></code>: indicamos o número da linha que queremos acessar. Note que o item 0 é nulo e, por isso, nada foi impresso abaixo do código.</p>
+<p>Evidentemente, não seria muito prático fazer isso para todos os itens da lista. Para contornar isso, podemos utilizar algumas configurações para nos ajudar.</p>
+<section id="configurando-a-exibicao-dos-data-frames">
+<h3>Configurando a exibição dos Data Frames<a class="headerlink" href="#configurando-a-exibicao-dos-data-frames" title="Link to this heading">#</a></h3>
+<p>Podemos configurar o tamanho máximo do texto que será exibido, nos permitindo ler tudo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pl</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">set_fmt_str_lengths</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (993, 2)</small><table border="1" class="dataframe"><thead><tr><th>Instituição</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>5680</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td><td>4520</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>3977</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Ciências Biomédicas (ICB)&quot;</td><td>3908</td></tr><tr><td>&quot;Universidade Federal de São Paulo (UNIFESP). Campus São Paulo. Escola Paulista de Medicina (EPM)&quot;</td><td>3658</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Pontifícia Universidade Católica de São Paulo (PUC-SP). Fundação Aniela Tadeusz Ginsberg&quot;</td><td>1</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP). Faculdade de Engenharia (FE)&quot;</td><td>1</td></tr><tr><td>&quot;Universidade Municipal de São Caetano do Sul (USCS). Faculdade de Comunicação e Artes&quot;</td><td>1</td></tr><tr><td>&quot;Faculdade de Engenharia de Sorocaba (FACENS)&quot;</td><td>1</td></tr><tr><td>&quot;Asilo São Vicente de Paulo&quot;</td><td>1</td></tr></tbody></table></div></div></div>
+</div>
+<p>Bem melhor, né?</p>
+<p>Com <code class="docutils literal notranslate"><span class="pre">pl.Config.set_fmt_str_lengths(&lt;numero_máximo_de_caracteres&gt;)</span></code>, podemos definir qual o máximo de caracteres que poderão aparecer.</p>
+<p>Se quiseremos resetar essa configuração, basta rodar o seguinte: <code class="docutils literal notranslate"><span class="pre">pl.Config.restore_defaults()</span></code>. Mas vamos deixar assim por enquanto. E lembre-se que essa configuração vale para um notebook só. Se quiser aumentar o tamanho máximo em outro notebook, terá que rodar esse código de novo.</p>
+<p>Ainda tá meio chatinho de ver porque não conseguimos ver todas as linhas. Felizmente, existe uma configuração para nos ajudar nisso também:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pl</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">set_tbl_rows</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (20, 2)</small><table border="1" class="dataframe"><thead><tr><th>Instituição</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>5680</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td><td>4520</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>3977</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Ciências Biomédicas (ICB)&quot;</td><td>3908</td></tr><tr><td>&quot;Universidade Federal de São Paulo (UNIFESP). Campus São Paulo. Escola Paulista de Medicina (EPM)&quot;</td><td>3658</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola Superior de Agricultura Luiz de Queiroz (ESALQ)&quot;</td><td>3534</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina (FM)&quot;</td><td>3507</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Jaboticabal. Faculdade de Ciências Agrárias e Veterinárias (FCAV)&quot;</td><td>3489</td></tr><tr><td>&quot;Universidade Federal de São Carlos (UFSCAR). Centro de Ciências Exatas e de Tecnologia (CCET)&quot;</td><td>3370</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP). Instituto de Biologia (IB)&quot;</td><td>2873</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Biociências (IB)&quot;</td><td>2651</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola de Engenharia de São Carlos (EESC)&quot;</td><td>2600</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto (FFCLRP)&quot;</td><td>2588</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Química (IQ)&quot;</td><td>2507</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola Politécnica (EP)&quot;</td><td>2426</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP). Faculdade de Ciências Médicas (FCM)&quot;</td><td>2320</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina Veterinária e Zootecnia (FMVZ)&quot;</td><td>2287</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Botucatu. Instituto de Biociências (IBB)&quot;</td><td>2256</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Presidente Prudente. Faculdade de Ciências e Tecnologia (FCT)&quot;</td><td>2179</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de São José do Rio Preto. Instituto de Biociências, Letras e Ciências Exatas (IBILCE)&quot;</td><td>2096</td></tr></tbody></table></div></div></div>
+</div>
+<p>Com a função <code class="docutils literal notranslate"><span class="pre">pl.Config.set_tbl_rows(&lt;numero_maximo_de_linhas&gt;)</span></code>, podemos definir quantas linhas serão impressas.</p>
+<p>Note que, além de aparecerem mais linhas, a coluna em si ficou mais larga. Isso aconteceu porque agora apareceram linhas com mais caracteres e que puderam aproveitar do limite generoso de caracteres que nós definimos antes.</p>
+<p>Note que se pedirmos uma linha a mais que o limite já teremos novamente uma coluna com “…”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (21, 2)</small><table border="1" class="dataframe"><thead><tr><th>Instituição</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>null</td><td>5680</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td><td>4520</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>3977</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Ciências Biomédicas (ICB)&quot;</td><td>3908</td></tr><tr><td>&quot;Universidade Federal de São Paulo (UNIFESP). Campus São Paulo. Escola Paulista de Medicina (EPM)&quot;</td><td>3658</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola Superior de Agricultura Luiz de Queiroz (ESALQ)&quot;</td><td>3534</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina (FM)&quot;</td><td>3507</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Jaboticabal. Faculdade de Ciências Agrárias e Veterinárias (FCAV)&quot;</td><td>3489</td></tr><tr><td>&quot;Universidade Federal de São Carlos (UFSCAR). Centro de Ciências Exatas e de Tecnologia (CCET)&quot;</td><td>3370</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP). Instituto de Biologia (IB)&quot;</td><td>2873</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola de Engenharia de São Carlos (EESC)&quot;</td><td>2600</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto (FFCLRP)&quot;</td><td>2588</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Química (IQ)&quot;</td><td>2507</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Escola Politécnica (EP)&quot;</td><td>2426</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP). Faculdade de Ciências Médicas (FCM)&quot;</td><td>2320</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina Veterinária e Zootecnia (FMVZ)&quot;</td><td>2287</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Botucatu. Instituto de Biociências (IBB)&quot;</td><td>2256</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de Presidente Prudente. Faculdade de Ciências e Tecnologia (FCT)&quot;</td><td>2179</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP). Campus de São José do Rio Preto. Instituto de Biociências, Letras e Ciências Exatas (IBILCE)&quot;</td><td>2096</td></tr><tr><td>&quot;Universidade Federal de São Carlos (UFSCAR). Centro de Ciências Biológicas e da Saúde (CCBS)&quot;</td><td>1954</td></tr></tbody></table></div></div></div>
+</div>
+<p>Teste um pouco diferentes limites de largura e de numero de linhas e estabeleça números que te deixem mais confortáveis em trabalhar com esses dados.</p>
+</section>
+<section id="voltando-a-analise">
+<h3>Voltando à análise<a class="headerlink" href="#voltando-a-analise" title="Link to this heading">#</a></h3>
+<p>Você deve ter reparado que na coluna “Instituição” consta a indicação não só do nome, mas também da faculdade ou do instituto à que a pessoa beneficiária de uma das bolsas da fapesp era vinculada. Isso quer dizer que não conseguimos saber a partir dessa coluna, por exemplo, quantas bolsas a USP ou a UNICAMP já receberam e não existe nenhuma outra coluna na base de dados que nos permita coletar essa informação.</p>
+<p>Mas perceba que essa informação está lá nessa exata coluna, ela só não está estruturada da maneira como gostaríamos. Mas podemos criar uma nova coluna que atenda o que desejamos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Instituição&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Universidade&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Instituição&#39;</span><span class="p">,</span> <span class="s1">&#39;Universidade&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (155_767, 2)</small><table border="1" class="dataframe"><thead><tr><th>Instituição</th><th>Universidade</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Universidade de São Paulo (USP). Escola de Comunicações e Artes (ECA)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Física de São Carlos (IFSC)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade Federal do Rio de Janeiro (UFRJ). Instituto de Biofísica Carlos Chagas Filho (IBCCF)&quot;</td><td>&quot;Universidade Federal do Rio de Janeiro (UFRJ)&quot;</td></tr><tr><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td></tr><tr><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade Federal de Santa Maria. Centro de Ciências Naturais e Exatas (CCNE)&quot;</td><td>&quot;Universidade Federal de Santa Maria&quot;</td></tr><tr><td>&quot;FAC IDOR CIENCIAS MEDICAS/IDOR&quot;</td><td>&quot;FAC IDOR CIENCIAS MEDICAS/IDOR&quot;</td></tr><tr><td>&quot;Ministério da Ciência, Tecnologia e Inovação (Brasil). Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)&quot;</td><td>&quot;Ministério da Ciência, Tecnologia e Inovação (Brasil)&quot;</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Ciências Farmacêuticas (FCF)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Química (IQ)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Química (IQ)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Instituto de Estudos Econômicos, Sociais e Políticos de São Paulo (IDESP)&quot;</td><td>&quot;Instituto de Estudos Econômicos, Sociais e Políticos de São Paulo (IDESP)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado). Agência Paulista de Tecnologia dos Agronegócios (APTA). Instituto Biológico (IB)&quot;</td><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado). Agência Paulista de Tecnologia dos Agronegócios (APTA). Instituto Agronômico (IAC)&quot;</td><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado). Agência Paulista de Tecnologia dos Agronegócios (APTA). Instituto Agronômico (IAC)&quot;</td><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP). Instituto de Química (IQ)&quot;</td><td>&quot;Universidade de São Paulo (USP)&quot;</td></tr></tbody></table></div></div></div>
+</div>
+<p>Olha como foi relativamente simples. Em uma linha de código conseguimos a informação que queríamos e agora podemos finalmente descobrir que instituições mais recebem financiamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Universidade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (20, 2)</small><table border="1" class="dataframe"><thead><tr><th>Universidade</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>61710</td></tr><tr><td>&quot;Universidade Estadual Paulista (UNESP)&quot;</td><td>34195</td></tr><tr><td>&quot;Universidade Estadual de Campinas (UNICAMP)&quot;</td><td>22228</td></tr><tr><td>&quot;Universidade Federal de São Carlos (UFSCAR)&quot;</td><td>7813</td></tr><tr><td>&quot;Universidade Federal de São Paulo (UNIFESP)&quot;</td><td>5900</td></tr><tr><td>null</td><td>5680</td></tr><tr><td>&quot;Secretaria da Saúde (São Paulo - Estado)&quot;</td><td>3166</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td><td>1668</td></tr><tr><td>&quot;Secretaria de Desenvolvimento Econômico (São Paulo - Estado)&quot;</td><td>1475</td></tr><tr><td>&quot;Ministério da Ciência, Tecnologia e Inovação (Brasil)&quot;</td><td>1335</td></tr><tr><td>&quot;Universidade Federal do ABC (UFABC)&quot;</td><td>982</td></tr><tr><td>&quot;Pontifícia Universidade Católica de São Paulo (PUC-SP)&quot;</td><td>691</td></tr><tr><td>&quot;Ministério da Defesa (Brasil)&quot;</td><td>627</td></tr><tr><td>&quot;Secretaria de Meio Ambiente, Infraestrutura e Logística (São Paulo - Estado)&quot;</td><td>512</td></tr><tr><td>&quot;Universidade de Franca (UNIFRAN)&quot;</td><td>452</td></tr><tr><td>&quot;Ministério da Agricultura, Pecuária e Abastecimento (Brasil)&quot;</td><td>429</td></tr><tr><td>&quot;Centro Brasileiro de Análise e Planejamento (CEBRAP)&quot;</td><td>379</td></tr><tr><td>&quot;Pontifícia Universidade Católica de Campinas (PUC-CAMP)&quot;</td><td>367</td></tr><tr><td>&quot;Universidade do Vale do Paraíba (UNIVAP)&quot;</td><td>337</td></tr><tr><td>&quot;Universidade Presbiteriana Mackenzie (UPM)&quot;</td><td>300</td></tr></tbody></table></div></div></div>
+</div>
+<p>Se quisermos salvar também a informação de faculdade, fazemos o seguinte:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Instituição&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Universidade&quot;</span><span class="p">),</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Instituição&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">null_on_oob</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_chars</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;Faculdade&quot;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">df3</span><span class="p">[</span><span class="s2">&quot;Universidade&quot;</span><span class="p">,</span> <span class="s2">&quot;Faculdade&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (155_767, 2)</small><table border="1" class="dataframe"><thead><tr><th>Universidade</th><th>Faculdade</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Escola de Comunicações e Artes (ECA)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Instituto de Física de São Carlos (IFSC)&quot;</td></tr><tr><td>&quot;Universidade Federal do Rio de Janeiro (UFRJ)&quot;</td><td>&quot;Instituto de Biofísica Carlos Chagas Filho (IBCCF)&quot;</td></tr><tr><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td><td>null</td></tr><tr><td>&quot;FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ&quot;</td><td>null</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td></tr><tr><td>&quot;Universidade Federal de Santa Maria&quot;</td><td>&quot;Centro de Ciências Naturais e Exatas (CCNE)&quot;</td></tr><tr><td>&quot;FAC IDOR CIENCIAS MEDICAS/IDOR&quot;</td><td>null</td></tr><tr><td>&quot;Ministério da Ciência, Tecnologia e Inovação (Brasil)&quot;</td><td>&quot;Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)&quot;</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Faculdade de Ciências Farmacêuticas (FCF)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Instituto de Química (IQ)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Instituto de Química (IQ)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td></tr><tr><td>&quot;Instituto de Estudos Econômicos, Sociais e Políticos de São Paulo (IDESP)&quot;</td><td>null</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td><td>&quot;Agência Paulista de Tecnologia dos Agronegócios (APTA)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td><td>&quot;Agência Paulista de Tecnologia dos Agronegócios (APTA)&quot;</td></tr><tr><td>&quot;Secretaria de Agricultura e Abastecimento (São Paulo - Estado)&quot;</td><td>&quot;Agência Paulista de Tecnologia dos Agronegócios (APTA)&quot;</td></tr><tr><td>&quot;Universidade de São Paulo (USP)&quot;</td><td>&quot;Instituto de Química (IQ)&quot;</td></tr></tbody></table></div></div></div>
+</div>
+<p>A primeira linha permaneceu a mesma, mas acrescentamos uma segunda linha detalhando a extração do restante.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pl.col(&quot;Instituição&quot;)</span></code>: Indicamos que, para criar a nova coluna, iremos utilizar a coluna “Instituição” como base.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.str.split(&quot;.&quot;)</span></code>: Separamos o texto contido em cada linha nessa coluna utilizando o ponto como delimitador</p>
+<p><code class="docutils literal notranslate"><span class="pre">.list.get(1,</span> <span class="pre">null_on_oob=True)</span></code>: Para a universidade, pegamos o item 0, que é o primeiro da lista. Aqui, pegamos o item 1 e incluimos <code class="docutils literal notranslate"><span class="pre">null_on_oob=True</span></code>para lidar com casos em que não há ponto final - isto é, não há uma “sub-instituição” listada, como uma faculdade. “null_on_oob” verdadeiro quer dizer que, em casos em que não há o elemento desejado (o elemento 1) e, por isso, daria o erro de “out of bounds” (o elemento procurado não existe), em vez de erro, é salvo o valor nulo. Podemos ver isso que aconteceu nas linhas referentes a “FIOCRUZ PARANA INSTITUTO CARLOS CHAGAS/FIOCRUZ”, por exemplo.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.str.strip_chars()</span></code>: Logo depois do ponto que é utilizado como delimitador vem um espaço, que seria salvo no inicio do texto desta coluna. Esta função exclui esse espaço.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.alias(&quot;Faculdade&quot;)</span></code>: Salvamos o resultado da operação definida até aqui em coluna denominada “Faculdade”.</p>
+<p>Feita a organização dessa coluna, podemos novamente realizar operações que já fizemos antes, como obsevar apenas as linhas relacionadas à USP:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df3</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Universidade&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Universidade de São Paulo (USP)&quot;</span>
+    <span class="p">)</span>
+    <span class="p">[</span><span class="s1">&#39;Faculdade&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (69, 2)</small><table border="1" class="dataframe"><thead><tr><th>Faculdade</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</td><td>4520</td></tr><tr><td>&quot;Faculdade de Medicina de Ribeirão Preto (FMRP)&quot;</td><td>3977</td></tr><tr><td>&quot;Instituto de Ciências Biomédicas (ICB)&quot;</td><td>3908</td></tr><tr><td>&quot;Escola Superior de Agricultura Luiz de Queiroz (ESALQ)&quot;</td><td>3534</td></tr><tr><td>&quot;Faculdade de Medicina (FM)&quot;</td><td>3507</td></tr><tr><td>&quot;Instituto de Biociências (IB)&quot;</td><td>2651</td></tr><tr><td>&quot;Escola de Engenharia de São Carlos (EESC)&quot;</td><td>2600</td></tr><tr><td>&quot;Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto (FFCLRP)&quot;</td><td>2588</td></tr><tr><td>&quot;Instituto de Química (IQ)&quot;</td><td>2507</td></tr><tr><td>&quot;Escola Politécnica (EP)&quot;</td><td>2426</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>&quot;Centro de Inovação da USP (INOVA)&quot;</td><td>12</td></tr><tr><td>&quot;Faculdade de Economia, Administração, Contabilidade e Atuária (FEA)&quot;</td><td>8</td></tr><tr><td>&quot;Plataforma Científica Pasteur&quot;</td><td>7</td></tr><tr><td>&quot;Reitoria (RUSP)&quot;</td><td>5</td></tr><tr><td>&quot;Hospital de Pesquisa e Reabilitação de Lesões Lábio-Palatais (HPRLP)&quot;</td><td>4</td></tr><tr><td>&quot;Centro de Estudos das Negociações Internacionais (CAENI)&quot;</td><td>2</td></tr><tr><td>&quot;Pró-Reitoria de Graduação (PRO-G)&quot;</td><td>2</td></tr><tr><td>&quot;Centro de Pesquisa para Inovação em Gases de Efeito Estufa&quot;</td><td>1</td></tr><tr><td>&quot;Campus Bauru&quot;</td><td>1</td></tr><tr><td>&quot;Sistema Integrado de Bibliotecas (SIBi)&quot;</td><td>1</td></tr></tbody></table></div></div></div>
+</div>
+<p>Podemos ser mais específicos e olhar para as áreas que mais receberam bolsas da FFLCH-USP:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df3</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Universidade&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Universidade de São Paulo (USP)&quot;</span><span class="p">,</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Faculdade&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Faculdade de Filosofia, Letras e Ciências Humanas (FFLCH)&quot;</span>
+    <span class="p">)</span>
+    <span class="p">[</span><span class="s1">&#39;Área do Conhecimento&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 2)</small><table border="1" class="dataframe"><thead><tr><th>Área do Conhecimento</th><th>count</th></tr><tr><td>str</td><td>u32</td></tr></thead><tbody><tr><td>&quot;História&quot;</td><td>1056</td></tr><tr><td>&quot;Letras&quot;</td><td>1028</td></tr><tr><td>&quot;Filosofia&quot;</td><td>627</td></tr><tr><td>&quot;Antropologia&quot;</td><td>437</td></tr><tr><td>&quot;Sociologia&quot;</td><td>420</td></tr><tr><td>&quot;Geografia&quot;</td><td>272</td></tr><tr><td>&quot;Linguística&quot;</td><td>245</td></tr><tr><td>&quot;Ciência Política&quot;</td><td>232</td></tr><tr><td>&quot;Geociências&quot;</td><td>83</td></tr><tr><td>&quot;Ciência da Informação&quot;</td><td>28</td></tr></tbody></table></div></div></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -453,6 +718,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quais-sao-as-instituicoes-que-mais-recebem-financiamento">Quais são as instituições que mais recebem financiamento?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configurando-a-exibicao-dos-data-frames">Configurando a exibição dos Data Frames</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voltando-a-analise">Voltando à análise</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
