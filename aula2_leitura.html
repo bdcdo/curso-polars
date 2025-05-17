@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Aula 3 - Exploração inicial" href="aula3_exploracao.html" />
-    <link rel="prev" title="Aula 1 - Instalação e import" href="aula1_instalacao.html" />
+    <link rel="prev" title="Aula 1 - Instalação e importação do polars" href="aula1_instalacao.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,12 +174,13 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e importação do polars</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 2 - Leitura e escrita da bases de dados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção de colunas</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Análise inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
 </ul>
 
     </div>
@@ -401,7 +402,8 @@ document.write(`
 <p>O <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> só é necessário se você nunca usou a biblioteca antes. Nos usos seguintes, basta importar a biblioteca e, por convenção, sempre apelidamos o polars como pl.</p>
 <section id="leitura-de-arquivos-csv">
 <h2>Leitura de arquivos csv<a class="headerlink" href="#leitura-de-arquivos-csv" title="Link to this heading">#</a></h2>
-<p>Feito o import, vamos ler a base de dados em si. As funções de leitura de bases de dados do polars seguem sempre o mesmo formato: <code class="docutils literal notranslate"><span class="pre">read_&lt;nome</span> <span class="pre">do</span> <span class="pre">formato&gt;</span></code>. Vamos usar aqui o <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>, já que é este o formato da base de dados.</p>
+<p>Feito o import, vamos ler a base de dados em si e salvar em uma variável chamada <code class="docutils literal notranslate"><span class="pre">df</span></code>, abreviação de DataFrame, que é como chamamos planilhas no python.</p>
+<p>As funções de leitura de bases de dados do polars seguem sempre o mesmo formato: <code class="docutils literal notranslate"><span class="pre">read_&lt;formato&gt;</span></code>. Vamos usar aqui o <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>, já que é este o formato da base de dados.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;bolsas_no_brasil_concluidas.csv&#39;</span><span class="p">)</span>
@@ -410,11 +412,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="ne">ComputeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;bolsas_no_brasil_concluidas.csv&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -422,7 +424,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -430,7 +432,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
@@ -438,7 +440,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:540,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/csv/functions.py:540,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
 <span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">533</span>     <span class="k">with</span> <span class="n">prepare_file_arg</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">source</span><span class="p">,</span>
@@ -479,7 +481,7 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="k">if</span> <span class="n">new_columns</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="k">return</span> <span class="n">_update_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/io/csv/functions.py:688,</span> in <span class="ni">_read_csv_impl</span><span class="nt">(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/csv/functions.py:688,</span> in <span class="ni">_read_csv_impl</span><span class="nt">(source, has_header, columns, separator, comment_prefix, quote_char, skip_rows, skip_lines, schema, schema_overrides, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_index_name, row_index_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines, decimal_comma, glob)</span>
 <span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="n">projection</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">parse_columns_arg</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">688</span> <span class="n">pydf</span> <span class="o">=</span> <span class="n">PyDataFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
@@ -516,12 +518,14 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">720</span> <span class="k">return</span> <span class="n">wrap_df</span><span class="p">(</span><span class="n">pydf</span><span class="p">)</span>
 
-<span class="ne">FileNotFoundError</span>: No such file or directory (os error 2): bolsas_no_brasil_concluidas.csv
+<span class="ne">ComputeError</span>: found more fields than defined in &#39;Schema&#39;
+
+<span class="n">Consider</span> <span class="n">setting</span> <span class="s1">&#39;truncate_ragged_lines=True&#39;</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Ops. Tivemos um problema. Pra você ver como mesmo ler uma planilinha pode ser difícil.</p>
+<p>Ops. Tivemos um problema. Pra você ver como mesmo ler uma planilinha pode ser difícil quando somos exatos no que pedimos ao computador.</p>
 <p>O erro não é óbvio nisso, mas o grande problema é que, em geral, arquivos .csv utilizam vírgulas para separar itens, mas o csv fornecido pela fapesp utiliza ponto e vírgula. Vamos então tentar de novo explicitando isso:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -533,19 +537,19 @@ document.write(`
 <p>Agora foi!</p>
 <p>Vamos entender o que fizemos por partes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> </code>: criamos uma variável chamada <code class="docutils literal notranslate"><span class="pre">df</span></code> e atribuímos a esta variável o resultado do que vem depois do <code class="docutils literal notranslate"><span class="pre">=</span></code>. Neste caso, isso significa que iremos salvar em <code class="docutils literal notranslate"><span class="pre">df</span></code> o conteúdo da planilha que iremos ler.
-Feito isso, para acessar esse conteúdo basta digitarmos o nome da variável, que nomeei como <code class="docutils literal notranslate"><span class="pre">df</span></code> por convenção - consiste na abreviatura de DataFrame -, mas poderia receber qualquer outro nome, como <code class="docutils literal notranslate"><span class="pre">dados_bolsas</span></code> ou <code class="docutils literal notranslate"><span class="pre">fapesp_brasil_concluido</span></code>. Para entender melhor as limitações dos nomes das variáveis, clique <a class="reference external" href="https://www.w3schools.com/python/python_variables_names.asp">aqui</a>.</p>
+Feito isso, para acessar esse conteúdo basta digitarmos o nome da variável, que nomeei como <code class="docutils literal notranslate"><span class="pre">df</span></code> por convenção, mas poderia receber qualquer outro nome, como <code class="docutils literal notranslate"><span class="pre">dados_bolsas</span></code> ou <code class="docutils literal notranslate"><span class="pre">fapesp_brasil_concluido</span></code>. Para entender melhor as limitações dos nomes das variáveis, clique <a class="reference external" href="https://www.w3schools.com/python/python_variables_names.asp">aqui</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pl.read_csv()</span></code>: utilizamos a função <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code>da biblioteca <code class="docutils literal notranslate"><span class="pre">polars</span></code>, que apelidamos como <code class="docutils literal notranslate"><span class="pre">pl</span></code>, como vimos na aula anterior. Lembre-se sempre de utilizar os parenteses ao chamar qualquer função!</p>
 <p><code class="docutils literal notranslate"><span class="pre">('bolsas_no_brasil_concluidas.csv',</span> <span class="pre">separator=';')</span></code>: dentro da função, passamos dois argumentos - chamamos de argumento os valores que estamos “colocando” na função - <code class="docutils literal notranslate"><span class="pre">'bolsas_no_brasil_concluidas.csv'</span></code> e <code class="docutils literal notranslate"><span class="pre">';'</span></code>.<br />
-O primeiro argumento, <code class="docutils literal notranslate"><span class="pre">'bolsas_no_brasil_concluidas.csv'</span></code> se resume a nomear o arquivo que queremos ler. Este argumento é obrigatório. Sem dizer o que você quer ler, não tem como ler nada. Lembre-se de atentar para o fato de que o formato do arquivo deve ser incluso em seu nome - neste caso, “.csv”.<br />
+O primeiro argumento, <code class="docutils literal notranslate"><span class="pre">'bolsas_no_brasil_concluidas.csv'</span></code> se resume a nomear o arquivo que queremos ler. Este argumento é obrigatório. Sem dizer o que você quer ler, não tem como ler nada. Lembre-se de se atentar para o fato de que o formato do arquivo deve ser incluso em seu nome - neste caso, “.csv”.<br />
 Já o argumento <code class="docutils literal notranslate"><span class="pre">';'</span></code> é opcional. Neste caso, acabamos sendo obrigados a colocá-lo, mas, ao ler a esmagadora maioria das planilhas, você não precisará informar nada do tipo. Isso acontece porque, se você não informa qual separador quer utilizar, o polars presume que deve utilizar a vírgula. Se quiser utilizar algo diferente, precisará pedir explicitamente ao polars que faça isso.<br />
 Enquanto <code class="docutils literal notranslate"><span class="pre">';'</span></code> é um argumento (algo que estamos colocando dentro da função), <code class="docutils literal notranslate"><span class="pre">separator=</span></code> é um parâmetro. Pense nos parâmetros como caixinhas dentro da função que estão aguardando ser preenchidas. Se você não preenche o parâmetro separator, o polars vai lá e guarda uma vírgula lá, mas, se quiser que outra coisa seja guardada lá, vai precisar passar explicitamente um <strong>argumento</strong> informando o que deve ser utilizado.</p>
-<p>Vamos utilizar bastante essa terminologia - argumentos e parâmetros - então é importante para para tentar entender direito isso e tirar eventuais dúvidas antes de prosseguir.</p>
-<p>Basicamente todas as funções do polars tem uma série de parâmetros que podem ou não ser preenchidos com argumentos - caso não sejam preenchidos, o polars vai guardar lá algo pré-definido. Não precisa entender em detalhes cada um, mas, se quiser conferir a lista completa dos parâmetros que podem ser utilizados com <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>, confira a <a class="reference external" href="https://docs.pola.rs/api/python/stable/reference/api/polars.read_csv.html">documentação dessa função.</a></p>
+<p>Basicamente todas as funções do polars tem uma série de parâmetros que podem ou não ser preenchidos com argumentos - caso não sejam preenchidos, o polars vai guardar lá algo pré-definido. Não precisa entender em detalhes cada um, mas, se quiser conferir a lista completa dos parâmetros que podem ser utilizados com <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>, confira a <a class="reference external" href="https://docs.pola.rs/api/python/stable/reference/api/polars.read_csv.html">documentação dessa função</a>.</p>
+<p>Vamos utilizar bastante essa terminologia - argumentos e parâmetros - então é importante entender direito esses conceitos e tirar eventuais dúvidas antes de prosseguir. Lembre-se: um dos melhores usos de chatbots como o ChatGPT é tirar dúvidas sobre programação.</p>
 </section>
 <section id="escrita-da-base-de-dados">
 <h2>Escrita da base de dados<a class="headerlink" href="#escrita-da-base-de-dados" title="Link to this heading">#</a></h2>
 <p>Antes de entrar na exploração da base de dados em si, vamos terminar de ver tudo o que tem pra ver sobre leitura e escrita de dados.</p>
-<p>Temos o nosso <code class="docutils literal notranslate"><span class="pre">df</span></code>. Se quisermos salvá-lo como csv, basta utilizar a função <code class="docutils literal notranslate"><span class="pre">write_csv()</span></code> - veja que o padrão de nomes será o mesmo do read, formado por <code class="docutils literal notranslate"><span class="pre">write_&lt;nome</span> <span class="pre">do</span> <span class="pre">formato&gt;</span></code>. Ao utilizar essa função, passamos como argumento o nome como queremos salvar o arquivo, com a extensão inclusa.</p>
+<p>Temos o nosso <code class="docutils literal notranslate"><span class="pre">df</span></code>. Se quisermos salvá-lo como csv, basta utilizar a função <code class="docutils literal notranslate"><span class="pre">write_csv()</span></code> - veja que o padrão de nomes será o mesmo do read, formado por <code class="docutils literal notranslate"><span class="pre">write_&lt;formato&gt;</span></code>. Ao utilizar essa função, passamos como argumento o nome como queremos salvar o arquivo, com a extensão inclusa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s1">&#39;base_fapesp.csv&#39;</span><span class="p">)</span>
@@ -563,10 +567,10 @@ Enquanto <code class="docutils literal notranslate"><span class="pre">';'</span>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">write_excel</span><span class="p">(</span><span class="s1">&#39;base_fapesp.xlsx&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/dataframe/frame.py:3482,</span> in <span class="ni">DataFrame.write_excel</span><span class="nt">(self, workbook, worksheet, position, table_style, table_name, column_formats, dtype_formats, conditional_formats, header_format, column_totals, column_widths, row_totals, row_heights, sparklines, formulas, float_precision, include_header, autofilter, autofit, hidden_columns, hide_gridlines, sheet_zoom, freeze_panes)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/dataframe/frame.py:3482,</span> in <span class="ni">DataFrame.write_excel</span><span class="nt">(self, workbook, worksheet, position, table_style, table_name, column_formats, dtype_formats, conditional_formats, header_format, column_totals, column_widths, row_totals, row_heights, sparklines, formulas, float_precision, include_header, autofilter, autofit, hidden_columns, hide_gridlines, sheet_zoom, freeze_panes)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3114</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">3115</span><span class="sd"> Write frame data to a table in an Excel workbook/worksheet.</span>
 <span class="g g-Whitespace">   </span><span class="mi">3116</span><span class="sd"> </span>
@@ -581,7 +585,7 @@ Enquanto <code class="docutils literal notranslate"><span class="pre">';'</span>
 <span class="g g-Whitespace">   </span><span class="mi">3483</span> <span class="kn">from</span><span class="w"> </span><span class="nn">xlsxwriter.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">xl_cell_to_rowcol</span>
 <span class="g g-Whitespace">   </span><span class="mi">3485</span> <span class="c1"># setup workbook/worksheet</span>
 
-<span class="nn">File ~/Desktop/curso-polars/.venv/lib/python3.12/site-packages/polars/dependencies.py:293,</span> in <span class="ni">import_optional</span><span class="nt">(module_name, err_prefix, err_suffix, min_version, min_err_prefix, install_message)</span>
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/dependencies.py:293,</span> in <span class="ni">import_optional</span><span class="nt">(module_name, err_prefix, err_suffix, min_version, min_err_prefix, install_message)</span>
 <span class="g g-Whitespace">    </span><span class="mi">288</span>     <span class="n">suffix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">err_suffix</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">err_suffix</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="n">err_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">&#39;</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s2">&#39;</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">290</span>         <span class="n">install_message</span>
@@ -597,12 +601,12 @@ Enquanto <code class="docutils literal notranslate"><span class="pre">';'</span>
 </div>
 </div>
 </div>
-<p>No entanto, ao rodar isso, temos um erro. Este erro não acontece porque não existe a função <code class="docutils literal notranslate"><span class="pre">write_excel</span></code>, mas sim porque, para rodar essa função, precisamos instalar algumas dependências adicionais.</p>
-<p>Para a instalação de polars ser mais rápidas, seus desenvolvedores fizeram com que você não fosse obrigado a instalar coisas que não irá usar. No nosso caso, como vamos trabalhar com excel, é melhor já instalarmos tudo o que é necessário para trabalhar com esse formato, não apenas o “xlsxwriter” sugerido pela mensagem de erro.</p>
-<p>Para isso, rodamos agora <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">polars[excel]</span></code>. Os colchetes indicam que, além do polars, queremos instalas as dependências adicionais que associadas as “excel”.</p>
+<p>No entanto, ao rodar isso, temos um erro. Este erro acontece não porque não existe a função <code class="docutils literal notranslate"><span class="pre">write_excel</span></code>, mas sim porque, para rodar essa função, precisamos instalar algumas bibliotecas adicionais.</p>
+<p>Para a instalação de polars ser mais rápidas, seus desenvolvedores fizeram com que você não fosse obrigado a instalar coisas que não irá usar. Vamos então instalar o o “xlsxwriter” sugerido pela mensagem de erro.</p>
+<p>Para isso, rodamos agora <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">xlsxwriter</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>polars<span class="o">[</span>excel<span class="o">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>xlsxwriter
 </pre></div>
 </div>
 </div>
@@ -620,13 +624,127 @@ Enquanto <code class="docutils literal notranslate"><span class="pre">';'</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xlsxwriter.workbook.Workbook at 0x7d4c29f9e7e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xlsxwriter.workbook.Workbook at 0x783472210e60&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <p>Como a base de dados é grandinha, pode demorar um pouco.</p>
-<p>Para ler a planilha salva, podemos lê-la como fizemos com o csv:</p>
+<p>Para ler a planilha salva, vamos inicialmente ter o mesmo problema:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;base_fapesp.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_excel</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;base_fapesp.xlsx&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/_utils/deprecation.py:119,</span> in <span class="ni">deprecate_renamed_parameter.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">_rename_keyword_argument</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">,</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/spreadsheet/functions.py:399,</span> in <span class="ni">read_excel</span><span class="nt">(source, sheet_id, sheet_name, table_name, engine, engine_options, read_options, has_header, columns, schema_overrides, infer_schema_length, include_file_paths, drop_empty_rows, drop_empty_cols, raise_if_empty)</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span><span class="sd"> Read Excel spreadsheet data into a DataFrame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span><span class="sd"> </span>
+<span class="sd">   (...)    395 ... )  # doctest: +SKIP</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="n">sources</span><span class="p">,</span> <span class="n">read_multiple_workbooks</span> <span class="o">=</span> <span class="n">_sources</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="n">frames</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="ne">--&gt; </span><span class="mi">399</span>     <span class="n">_read_spreadsheet</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>         <span class="n">src</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>         <span class="n">sheet_id</span><span class="o">=</span><span class="n">sheet_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>         <span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span>         <span class="n">engine_options</span><span class="o">=</span><span class="n">engine_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>         <span class="n">read_options</span><span class="o">=</span><span class="n">read_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>         <span class="n">schema_overrides</span><span class="o">=</span><span class="n">schema_overrides</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">infer_schema_length</span><span class="o">=</span><span class="n">infer_schema_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="n">include_file_paths</span><span class="o">=</span><span class="n">include_file_paths</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="n">raise_if_empty</span><span class="o">=</span><span class="n">raise_if_empty</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">has_header</span><span class="o">=</span><span class="n">has_header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>         <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="n">drop_empty_rows</span><span class="o">=</span><span class="n">drop_empty_rows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="n">drop_empty_cols</span><span class="o">=</span><span class="n">drop_empty_cols</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>     <span class="k">for</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">sources</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">return</span> <span class="n">_unpack_read_results</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="n">frames</span><span class="o">=</span><span class="n">frames</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="n">read_multiple_workbooks</span><span class="o">=</span><span class="n">read_multiple_workbooks</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span> <span class="p">)</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/spreadsheet/functions.py:671,</span> in <span class="ni">_read_spreadsheet</span><span class="nt">(source, sheet_id, sheet_name, table_name, engine, engine_options, read_options, schema_overrides, infer_schema_length, include_file_paths, columns, has_header, raise_if_empty, drop_empty_rows, drop_empty_cols)</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="n">schema_overrides</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">schema_overrides</span> <span class="ow">or</span> <span class="p">{})</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span> <span class="c1"># establish the reading function, parser, and available worksheets</span>
+<span class="ne">--&gt; </span><span class="mi">671</span> <span class="n">reader_fn</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">worksheets</span> <span class="o">=</span> <span class="n">_initialise_spreadsheet_parser</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>     <span class="n">engine</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">engine_options</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="c1"># parse data from the indicated sheet(s)</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">sheet_names</span><span class="p">,</span> <span class="n">return_multiple_sheets</span> <span class="o">=</span> <span class="n">_get_sheet_names</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">sheet_id</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">worksheets</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="p">)</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/io/spreadsheet/functions.py:855,</span> in <span class="ni">_initialise_spreadsheet_parser</span><span class="nt">(engine, source, engine_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">852</span>     <span class="k">return</span> <span class="n">_read_spreadsheet_openpyxl</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">sheets</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;calamine&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">855</span>     <span class="n">fastexcel</span> <span class="o">=</span> <span class="n">import_optional</span><span class="p">(</span><span class="s2">&quot;fastexcel&quot;</span><span class="p">,</span> <span class="n">min_version</span><span class="o">=</span><span class="s2">&quot;0.7.0&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="n">reading_bytesio</span><span class="p">,</span> <span class="n">reading_bytes</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">BytesIO</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="k">if</span> <span class="p">(</span><span class="n">reading_bytesio</span> <span class="ow">or</span> <span class="n">reading_bytes</span><span class="p">)</span> <span class="ow">and</span> <span class="n">parse_version</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>         <span class="n">module_version</span> <span class="o">:=</span> <span class="n">fastexcel</span><span class="o">.</span><span class="n">__version__</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+
+<span class="nn">File ~/Desktop/dev/curso-polars/venv2/lib/python3.12/site-packages/polars/dependencies.py:293,</span> in <span class="ni">import_optional</span><span class="nt">(module_name, err_prefix, err_suffix, min_version, min_err_prefix, install_message)</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span>     <span class="n">suffix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">err_suffix</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">err_suffix</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>     <span class="n">err_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s2">&#39;</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s2">&#39;</span><span class="si">{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span>         <span class="n">install_message</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span>         <span class="ow">or</span> <span class="sa">f</span><span class="s2">&quot;Please install using the command `pip install </span><span class="si">{</span><span class="n">module_root</span><span class="si">}</span><span class="s2">`.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">293</span>     <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="n">err_message</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span> <span class="k">if</span> <span class="n">min_version</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="n">min_version</span> <span class="o">=</span> <span class="n">parse_version</span><span class="p">(</span><span class="n">min_version</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: required package &#39;fastexcel&#39; not found.
+<span class="n">Please</span> <span class="n">install</span> <span class="n">using</span> <span class="n">the</span> <span class="n">command</span> <span class="err">`</span><span class="n">pip</span> <span class="n">install</span> <span class="n">fastexcel</span><span class="err">`</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos então seguir a sugestão de instalar <code class="docutils literal notranslate"><span class="pre">fastexcel</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>fastexcel
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 1: pip: command not found
+</pre></div>
+</div>
+</div>
+</div>
+<p>E, ao tentar de novo ler o arquivo, irá funcionar:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;base_fapesp.xlsx&#39;</span><span class="p">)</span>
@@ -648,7 +766,7 @@ Could not determine dtype for column 26, falling back to string
 </div>
 </div>
 <p>Pode ignorar eventuais alertas sobre dtype. Elas são destinadas a usos mais avançados desse tipo de ferramenta.</p>
-<p>Note que, se não houvessemos instalado antes <code class="docutils literal notranslate"><span class="pre">polars[excel]</span></code>, teriamos recebido uma mensagem de erro ao tentar ler a planilha.</p>
+<p>Note como as mensagens de erro muitas vezes são não causas para pânico, mas sim indicações do que precisamos fazer para avançar.</p>
 <p>Agora que sabemos como ler a planilha, vamos explorá-la!</p>
 </section>
 </section>
@@ -689,7 +807,7 @@ Could not determine dtype for column 26, falling back to string
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aula 1 - Instalação e import</p>
+        <p class="prev-next-title">Aula 1 - Instalação e importação do polars</p>
       </div>
     </a>
     <a class="right-next"

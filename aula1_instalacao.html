@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Aula 1 - Instalação e import &#8212; Introdução a Polars para xuxus</title>
+    <title>Aula 1 - Instalação e importação do polars &#8212; Introdução a Polars para xuxus</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -174,12 +174,13 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 1 - Instalação e import</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aula 1 - Instalação e importação do polars</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção de colunas</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Análise inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
 </ul>
 
     </div>
@@ -365,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Aula 1 - Instalação e import</h1>
+    <h1>Aula 1 - Instalação e importação do polars</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,8 +391,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="aula-1-instalacao-e-import">
-<h1>Aula 1 - Instalação e import<a class="headerlink" href="#aula-1-instalacao-e-import" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="aula-1-instalacao-e-importacao-do-polars">
+<h1>Aula 1 - Instalação e importação do polars<a class="headerlink" href="#aula-1-instalacao-e-importacao-do-polars" title="Link to this heading">#</a></h1>
 <p>Oi, meu amooor!</p>
 <p>Pra começar a usar polars, surpresa: precisamos ter o polars instalado!!!</p>
 <p>Para fazer isso, basta rodar <code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">polars</span></code> em uma célula. Isso irá instalar o polars no seu python.</p>
@@ -408,12 +409,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Aqui eu estou usando uma biblioteca chamada uv pra simular como se eu não tivesse instalado nada antes e, por isso, aparece esse “Audited 1 package in 0.70ms”. No seu caso, deve aparecer uma mensagem um pouco diferente, mas tá tudo bem.</p>
+<p>Aqui eu estou usando uma biblioteca chamada uv pra simular como se eu não tivesse instalado nada antes e, por isso, aparece esse erro. No seu caso, deve aparecer uma mensagem um pouco diferente, mas tá tudo bem. Se não funcionar, tente essa outra versão do comando: <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span> <span class="pre">polars</span></code>.</p>
 <section id="importando-o-polars">
 <h2>Importando o polars<a class="headerlink" href="#importando-o-polars" title="Link to this heading">#</a></h2>
 <p>O que torna programação incrível, entre outras coisas, é o fato de que é muito fácil compartilhar código. Assim, não é necessário que toda pessoa que queira analisar planihas tenha que criar uma biblioteca do zero - ela pode utilizar bibliotecas feitas por outras pessoas.</p>
 <p>Chamamos de biblioteca conjuntos de funções pré-configuradas.</p>
-<p>Existem algumas bibliotecas que vem junto com o python, como as bibliotecas <code class="docutils literal notranslate"><span class="pre">math</span></code> e <code class="docutils literal notranslate"><span class="pre">random</span></code>. Para usarmos essas bibliotecas, basta usar a função <code class="docutils literal notranslate"><span class="pre">import</span></code> da seguinte maneira:</p>
+<p>Existem algumas bibliotecas que vem junto com o python, como as bibliotecas <code class="docutils literal notranslate"><span class="pre">math</span></code> e <code class="docutils literal notranslate"><span class="pre">random</span></code>, e, por isso, não precisam antes ser instaladas. Para usarmos essas bibliotecas, basta usar a função <code class="docutils literal notranslate"><span class="pre">import</span></code> da seguinte maneira:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -423,7 +424,8 @@ document.write(`
 </div>
 </div>
 <p>Seria possível importar tudo de uma vez escrevendo <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math,</span> <span class="pre">random</span></code>, mas a convenção é importar uma biblioteca por linha para ficar mais organizado.</p>
-<p>Tendo importado essas bibliotecas, podemos usar suas funções:</p>
+<p>Tendo importado essas bibliotecas, podemos usar suas funções.</p>
+<p>OBS: o caractere “#” indica um comentário. Isto é, tudo o que vem depois dele naquela mesma linha é interpretado como texto e não é rodado como código.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fatora o número entre parenteses - nesse caso, 10</span>
@@ -447,12 +449,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>396233
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>834125
 </pre></div>
 </div>
 </div>
 </div>
-<p>Como você pode ver, para usar uma função da biblioteca <code class="docutils literal notranslate"><span class="pre">math</span></code> escrevemos <code class="docutils literal notranslate"><span class="pre">math.</span></code> antes do nome da função. Isso é necessário para indicar ao python que queremos usar a função <code class="docutils literal notranslate"><span class="pre">factorial</span></code> que vem de math. Algo semelhante acontece com <code class="docutils literal notranslate"><span class="pre">randint</span></code>, que deve ser precedido de <code class="docutils literal notranslate"><span class="pre">randint</span></code>.</p>
+<p>Como você pode ver, para usar uma função da biblioteca <code class="docutils literal notranslate"><span class="pre">math</span></code> escrevemos <code class="docutils literal notranslate"><span class="pre">math.</span></code> antes do nome da função. Isso é necessário para indicar ao python que queremos usar a função <code class="docutils literal notranslate"><span class="pre">factorial</span></code> que vem de math. Algo semelhante acontece com <code class="docutils literal notranslate"><span class="pre">randint</span></code>, que deve ser precedido de <code class="docutils literal notranslate"><span class="pre">random.</span></code>.</p>
 <p>Da maneira como fizemos o import, isso sempre será necessário, mas é possível importar uma função específica e, assim, não será mais necessário sempre escrever o nome da biblioteca. Para fazer isso, vamos mudar um pouco o import:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -520,7 +522,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Apesar de ser possível sempre importar apenas funções específicas, em geral, é boa prática importar a biblioteca inteira, para ficar claro de onde surgiu determinada função.</p>
+<p>Apesar de ser possível sempre importar apenas funções específicas, em geral, salvo algumas exceções  que não vem ao caso agora, é boa prática importar a biblioteca inteira, para ficar claro de onde surgiu determinada função.</p>
 <p>Você pode estar pensando: mas poxa, Bruno, que preguiça… tem sempre que ficar escrevendo tudão então?</p>
 <p>Tenho uma ótima notícia pra xuxu: Não!!! Olha que fofo: podemos dar apelidos para as bibliotecas e é assim que se convencionou importar o polars.</p>
 <p>Vejamos:</p>
@@ -536,8 +538,8 @@ document.write(`
 <h3>Conclusão<a class="headerlink" href="#conclusao" title="Link to this heading">#</a></h3>
 <p>Falei do import em mais detalhes por dois motivos:</p>
 <ol class="arabic simple">
-<li><p>Se for ler código de outras pessoas, pode ver diferentes imports, então achei que seria legal aprofundar um pouco mais nesse ponto.</p></li>
-<li><p>Um erro bastante comum ao começar a utilizar essas bibliotecas é esquecer de colocar o nome de onde vem a função antes de utilizá-la. Espero que, com esse detalhamento maior, seja mais fácil de lembrar que ele tem sempre que estar lá e não esquecer nunca dos muitos <code class="docutils literal notranslate"><span class="pre">pl.</span></code> que vamos ter que escrever</p></li>
+<li><p>Se for ler código de outras pessoas, pode ver diferentes tipos de imports, então achei que seria legal aprofundar um pouco mais nesse ponto.</p></li>
+<li><p>Um erro bastante comum ao começar a utilizar essas bibliotecas é esquecer de colocar o nome de onde vem a função antes de utilizá-la. Espero que, com esse detalhamento maior, seja mais fácil de lembrar que ele tem sempre que estar lá e não esquecer nunca dos muitos <code class="docutils literal notranslate"><span class="pre">pl.</span></code> que vamos ter que escrever.</p></li>
 </ol>
 </section>
 </section>

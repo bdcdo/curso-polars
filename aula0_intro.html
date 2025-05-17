@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'aula0_intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Aula 1 - Instalação e import" href="aula1_instalacao.html" />
+    <link rel="next" title="Aula 1 - Instalação e importação do polars" href="aula1_instalacao.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,12 +175,12 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e importação do polars</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Análise inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção de colunas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
 </ul>
 
     </div>
@@ -382,17 +382,17 @@ document.write(`
 <h1>Aula 0 - Introdução<a class="headerlink" href="#aula-0-introducao" title="Link to this heading">#</a></h1>
 <p>Oi, xuxu! Te amo muitão!</p>
 <p>Como comentei, vamos trabalhar juntos com uma base de dados da FAPESP. As bases de dados estão disponíveis <a class="reference external" href="https://bv.fapesp.br/pt/pesquisa/download_projetos/">aqui</a>.</p>
-<p>Vamos trabalhar com a base “Bolsas no Brasil concluídas”. Baixa essa base de dados no seu computador e coloca na mesma pasta em que você irá trabalhar com os seus arquivos.</p>
+<p>Vamos trabalhar com a base “Bolsas no Brasil concluídas”. Baixe essa base de dados no seu computador e coloque na mesma pasta em que você irá trabalhar com os seus arquivos.</p>
 <p>Acho que já havia mencionado isso, mas, para trabalhar de maneira mais profissional, sugiro baixar o VS Code e trabalhar nele. Instale as extensões de python e do jupyter. O resto vamos instalando juntos conforme necessário.</p>
-<p>Uma observação: dividi os notebooks em vários arquivos pra ficar mais organizado como um livro e para facilitar a consulta depois. No entanto, pode ir fazendo tudo em um só notebook, para facilitar a sua vida. Em vez de só rodar o meu, sugiro ir escrevendo em um seu pra ir ver rodando.</p>
+<p>Uma observação: dividi os notebooks em vários arquivos para ficar mais organizado como um livro e para facilitar a consulta depois. No entanto, pode ir fazendo tudo em um só arquivo .ipynb (formato jupyter notebook), para facilitar a sua vida. Em vez de só rodar o meu código, sugiro ir transcrevendo o código para um arquivo e ir rodando também o código no seu computador.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula1_instalacao.html">Aula 1 - Instalação e importação do polars</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula2_leitura.html">Aula 2 - Leitura e escrita da bases de dados</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aula3_exploracao.html">Aula 3 - Exploração inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html#conversao-de-datas">Conversão de datas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Análise inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula4_tratamento.html">Aula 4 - Tratamento e seleção de colunas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula5_analiseInicial.html">Aula 5 - Visão geral inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aula6_analise_pt1.html">Análise dos dados - Parte 1</a></li>
 </ul>
 </div>
 </section>
@@ -432,7 +432,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Aula 1 - Instalação e import</p>
+        <p class="prev-next-title">Aula 1 - Instalação e importação do polars</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
